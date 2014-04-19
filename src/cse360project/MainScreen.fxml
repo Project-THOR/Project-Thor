@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse360project.MainScreenController">
+<children><Label fx:id="UsernameDisplayLabel" alignment="CENTER_RIGHT" layoutX="666.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="49.0" prefWidth="294.0" text="&lt;User Name goes Here&gt;" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font></Label><Button fx:id="StepsButton" layoutX="40.0" layoutY="116.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToStepScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Steps" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Label layoutX="14.0" prefHeight="49.0" prefWidth="294.0" text="THOR" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="72.0" />
+</font>
+</Label><Button fx:id="LogoutButton" layoutX="737.0" layoutY="557.0" onAction="#goToLoginScreen" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Logout" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="PhysicalActivityButton" layoutX="40.0" layoutY="247.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToPhysicalActivityScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Physical Activity" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="HeartRateButton" layoutX="40.0" layoutY="377.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToHeartRateScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Heart Rate" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="BloodGlucoseButton" layoutX="349.0" layoutY="117.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToBloodGlucoseScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Blood Glucose" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="BloodPressureButton" layoutX="349.0" layoutY="248.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToBloodPressureScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Blood Pressure" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="SleepButton" layoutX="349.0" layoutY="378.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToSleepScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Sleep" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="ProfileButton" layoutX="660.0" layoutY="117.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToProfileScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Profile" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="ReportButton" layoutX="660.0" layoutY="248.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToReportScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Report" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="ExportButton" layoutX="660.0" layoutY="378.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToExportScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Export" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button>
+</children>
+<padding>
+<Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+</padding></AnchorPane>

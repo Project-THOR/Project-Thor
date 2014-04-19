@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse360project.BloodGlucoseScreenController">
+<children>
+<Label fx:id="UsernameDisplayLabel" alignment="CENTER_RIGHT" layoutX="666.0" layoutY="19.0" prefHeight="49.0" prefWidth="294.0" text="&lt;User Name goes Here&gt;" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
+</Label>
+<Label layoutX="14.0" prefHeight="87.0" prefWidth="501.0" text="Blood Glucose" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="72.0" />
+</font>
+</Label>
+<Button fx:id="BloodGlucoseSaveButton" layoutX="27.0" layoutY="560.0" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Save" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button><Button fx:id="BloodGlucoseCancelButton" layoutX="215.0" layoutY="560.0" onAction="#cancelButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+</Button>
+</children>
+</AnchorPane>
