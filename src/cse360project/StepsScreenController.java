@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -37,9 +40,6 @@ public class StepsScreenController implements Initializable, TransitionControlle
     
     public String numberOfSteps;
     public String stepsDate;
-    
-    //public ObservableList<LineChart.Data> lineChartData = FXCollections.observableArrayList(new LineChart.Data("Woot", 10), new LineChart.Data("Lame", 20),new LineChart.Data("Foo", 30));
-    
     @FXML
     private Button StepsSaveButton;
     @FXML
@@ -51,12 +51,43 @@ public class StepsScreenController implements Initializable, TransitionControlle
     @FXML
     private DatePicker StepsDatePicker;
     @FXML
-    public static LineChart StepsGraph;
+    public LineChart<String, Number> StepsGraph;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+       
+        // Displays username in the top right corner of the scene
         UsernameDisplayLabel.setText(LoginScreenController.userName);
+        // Code that displays steps data on the chart
+        ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
+        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
+        series.setName("Steps");
+        // For some reason it won't let me use a for/foreach loop to add 
+        String tempDate = MainScreenController.dateList.get(0);
+        int tempSteps = Integer.parseInt(MainScreenController.stepsList.get(0));
+        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        
+        tempDate = MainScreenController.dateList.get(1);
+        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(1));
+        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        
+        tempDate = MainScreenController.dateList.get(2);
+        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(2));
+        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        
+        tempDate = MainScreenController.dateList.get(3);
+        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(3));
+        series.getData().add(new XYChart.Data(tempDate, tempSteps))
+                ;
+        tempDate = MainScreenController.dateList.get(4);
+        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(4));
+        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        
+        lineChartData.add(series);
+        
+        StepsGraph.setData(lineChartData);
+        StepsGraph.createSymbolsProperty();
     }  
 
     @Override

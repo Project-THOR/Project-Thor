@@ -5,9 +5,15 @@
         <group>
             <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/ScreensFramework.java</file>
             <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/ScreensController.java</file>
-            <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/StepScreen.fxml</file>
             <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/LoginScreenController.java</file>
+            <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/MainScreenController.java</file>
+            <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/PhysicalActivityScreenController.java</file>
             <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/StepsScreenController.java</file>
+            <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/BloodGlucoseScreenController.java</file>
+            <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/ReportScreenController.java</file>
+            <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/ExportScreenController.java</file>
+            <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/SleepScreenController.java</file>
+            <file>file:/C:/Users/Risingdamp220/Documents/NetBeansProjects/CSE360Project/src/cse360project/BloodPressureScreenController.java</file>
         </group>
     </open-files>
 </project-private>

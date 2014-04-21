@@ -42,16 +42,16 @@
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button><DatePicker fx:id="StepsDatePicker" layoutX="184.0" layoutY="200.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="StepsGraph" layoutX="432.0" layoutY="128.0" prefHeight="444.0" prefWidth="547.0">
+</Button><DatePicker fx:id="StepsDatePicker" layoutX="184.0" layoutY="200.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="StepsGraph" layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0">
 <xAxis>
-<CategoryAxis side="BOTTOM" tickLabelFill="#0070c0">
+<CategoryAxis side="BOTTOM" style="-fx-tick-label-fill: #0070c0;" tickLabelFill="#0070c0">
 <tickLabelFont>
 <Font name="Segoe UI" size="12.0" />
 </tickLabelFont>
 </CategoryAxis>
 </xAxis>
 <yAxis>
-<NumberAxis minorTickCount="0" side="LEFT" tickLabelFill="#0070c0">
+<NumberAxis autoRanging="false" minorTickCount="0" side="LEFT" tickLabelFill="#0070c0" tickUnit="2000.0" upperBound="10000.0">
 <tickLabelFont>
 <Font name="Segoe UI" size="12.0" />
 </tickLabelFont>

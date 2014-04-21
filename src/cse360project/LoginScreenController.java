@@ -90,6 +90,7 @@ public class LoginScreenController implements Initializable, TransitionControlle
                 {
                     showLoginError();
                 }
+                
                 //ResultSet result = statement.executeQuery("SELECT * FROM mydb.user WHERE userName=" + userName + " AND userPassword="+ password);
                 //ResultSet result = statement.executeQuery("SELECT * FROM mydb.user WHERE userName = '"+ userName+"' AND userPassword = '"+password+"'"); 
               connection.close();  

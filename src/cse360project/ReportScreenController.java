@@ -1,10 +1,6 @@
 
 package cse360project;
 
-import static cse360project.StepsScreenController.databasePassword;
-import static cse360project.StepsScreenController.databaseUserName;
-import static cse360project.StepsScreenController.dbName;
-import static cse360project.StepsScreenController.url;
 import java.lang.*;
 import java.net.URL;
 import java.sql.*;

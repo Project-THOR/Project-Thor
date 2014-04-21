@@ -99,7 +99,8 @@ public class ScreensController extends StackPane
     
      public boolean unloadScreen(String name) {
         if (screens.remove(name) == null) {
-            System.out.println("**SPOILER ALERT** That screen never existed!");
+            System.out.println("An error occurred while swapping scenes but we'll ignore it for now");
+            System.out.println("It was the only way to get the charts to work :-/");
             return false;
         } 
         else 
