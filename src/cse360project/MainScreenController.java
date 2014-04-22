@@ -113,7 +113,7 @@ public class MainScreenController implements Initializable, TransitionController
                     {
                         // adds the values that were obtained from the database to a local arraylist
                         dateList.add(dataResult.getString(3));
-                        stepsList.add(dataResult.getString(13));
+                        stepsList.add(dataResult.getString(14));
                         // Writes data to the console for debugging purposes.
                         System.out.println();
                         System.out.print(dataResult.getString(2)+ " \t\t");
