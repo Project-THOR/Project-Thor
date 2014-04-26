@@ -17,21 +17,13 @@
 <font>
 <Font name="Segoe UI" size="72.0" />
 </font>
-</Label>
-<Button fx:id="ExportSaveButton" layoutX="27.0" layoutY="560.0" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Save" textFill="WHITE">
-<font>
-<Font name="Segoe UI" size="18.0" />
-</font>
+</Label><Button fx:id="ExportButton" layoutX="350.0" layoutY="247.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#ExportReportPdf" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Export" textFill="WHITE">
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button><Button fx:id="ExportCancelButton" layoutX="215.0" layoutY="560.0" onAction="#cancelButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
 <font>
-<Font name="Segoe UI" size="18.0" />
+<Font name="Segoe UI" size="32.0" />
 </font>
-<cursor>
-<Cursor fx:constant="HAND" />
-</cursor>
 </Button>
 </children>
 </AnchorPane>
