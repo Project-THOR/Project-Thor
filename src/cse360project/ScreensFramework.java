@@ -42,7 +42,7 @@ public class ScreensFramework extends Application
     
     public static String sleepScreenID              = "sleepScreen";
     public static String sleepScreenFile            = "SleepScreen.fxml";
-
+    
     public static ScreensController mainContainer = new ScreensController();
    
     @Override
