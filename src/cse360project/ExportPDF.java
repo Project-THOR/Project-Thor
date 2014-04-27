@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package cse360project;
 
@@ -52,6 +47,9 @@ public class ExportPDF
         System.out.println("Woot it Worked!");
         document.close();
         
+        //writeChartToPDF(generateBarChart(), 500, 400);
+        //document.close();
+        
         if (Desktop.isDesktopSupported()) {
         try 
         {
@@ -100,7 +98,7 @@ public class ExportPDF
 
    public static PdfPTable createTable1() throws DocumentException 
    {
-        PdfPTable table = new PdfPTable(2);
+        PdfPTable table = new PdfPTable(3);
         
         
         PdfPCell cell = new PdfPCell(new Phrase("Date"));
@@ -118,9 +116,9 @@ public class ExportPDF
         
         cell = new PdfPCell(new Phrase("BMI"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(cell);
+        table.addCell(cell);*/
 
-        cell = new PdfPCell(new Phrase("Sleep"));
+        /*cell = new PdfPCell(new Phrase("Sleep"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
@@ -132,11 +130,11 @@ public class ExportPDF
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
-        cell = new PdfPCell(new Phrase("Water"));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(cell);
-
         cell = new PdfPCell(new Phrase("Blood Pressure"));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);*/
+                
+        cell = new PdfPCell(new Phrase("Steps"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
@@ -144,68 +142,36 @@ public class ExportPDF
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
-        cell = new PdfPCell(new Phrase("Cholesterol"));
+        /*cell = new PdfPCell(new Phrase("Cholesterol"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);*/
-        
-        cell = new PdfPCell(new Phrase("Steps"));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(cell);
-        
+
         //float[] columnWidths = new float[] {20f, 20f};
         //table.setWidths(columnWidths);
             
-        table.setHeaderRows(2);
+        table.setHeaderRows(3);
         
         for(int i = 0; i < MainScreenController.dateList.size(); i++)
         {
             String date  = MainScreenController.dateList.get(i);
+            if(date == null)
+            {
+                date = "No Data";
+            }
             String steps = MainScreenController.stepsList.get(i);
+            if(steps == null)
+            {
+                steps = "No Data";
+            }
+            String glucose = MainScreenController.levelList.get(i);
+            if(glucose == null)
+            {
+                glucose = "No Data";
+            }
             table.addCell(date);
             table.addCell(steps);
-        }
-        
-
-        // row 1
-        /*table.addCell("1.0");
-        table.addCell("1.1");
-        table.addCell("1.2");
-        table.addCell("2.1");
-        table.addCell("2.2");
-        table.addCell("2.3");
-        table.addCell("2.1");
-        table.addCell("2.2");
-        table.addCell("2.3");
-        
-        //row2
-        table.addCell("1.0");
-        table.addCell("1.1");
-        table.addCell("1.2");
-        table.addCell("2.1");
-        table.addCell("2.2");
-        table.addCell("2.3");
-        table.addCell("2.1");
-        table.addCell("2.2");
-        table.addCell("2.3");
-        
-        // row 3
-        table.addCell("1.0");
-        table.addCell("1.1");
-        table.addCell("1.2");
-        table.addCell("2.1");
-        table.addCell("2.2");
-        table.addCell("2.3");
-        table.addCell("2.1");
-        table.addCell("2.2");
-        table.addCell("2.3");
-        
-        // row 4 - Test to see if for loop works - it does
-        for(int i = 0; i < 10; i++)
-        {
-            table.addCell("Woot" + i);
-        }*/
-       
-        
+            table.addCell(glucose);
+        }     
         return table;
     }
    
@@ -241,7 +207,7 @@ public class ExportPDF
         return chart;
     }
     
-   public static void writeChartToPDF(JFreeChart chart, int width, int height, String fileName) 
+   public static void writeChartToPDF(JFreeChart chart, int width, int height) 
    {
         PdfWriter writer = null;
  
@@ -249,7 +215,7 @@ public class ExportPDF
  
         try 
         {
-            writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
+            writer = PdfWriter.getInstance(document, new FileOutputStream("c:/temp/THOReport.pdf"));
             document.open();
             PdfContentByte contentByte = writer.getDirectContent();
             PdfTemplate template = contentByte.createTemplate(width, height);

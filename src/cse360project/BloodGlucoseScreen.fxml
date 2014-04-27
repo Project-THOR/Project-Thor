@@ -42,10 +42,10 @@
 </font></Label><Label layoutX="64.0" layoutY="230.0" text="Select Time:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
-</font></Label><TextArea layoutX="130.0" layoutY="275.0" prefHeight="110.0" prefWidth="200.0" /><Label layoutX="64.0" layoutY="275.0" text="Notes:" textFill="#0070c0">
+</font></Label><TextArea fx:id="notes" layoutX="130.0" layoutY="275.0" prefHeight="110.0" prefWidth="200.0" /><Label layoutX="64.0" layoutY="275.0" text="Notes:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
-</font></Label><TextField layoutX="186.0" layoutY="129.0" prefHeight="35.0" prefWidth="88.0" promptText="Level" style="-fx-background-radius: 0;" /><TextField layoutX="166.0" layoutY="224.0" prefHeight="35.0" prefWidth="64.0" promptText="HH:MM" style="-fx-background-radius: 0;" /><DatePicker layoutX="166.0" layoutY="180.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0">
+</font></Label><TextField fx:id="glucoseLevel" layoutX="186.0" layoutY="129.0" prefHeight="35.0" prefWidth="88.0" promptText="Level" style="-fx-background-radius: 0;" /><TextField fx:id="time" layoutX="166.0" layoutY="224.0" prefHeight="35.0" prefWidth="64.0" promptText="HH:MM" style="-fx-background-radius: 0;" /><DatePicker fx:id="glucoseLevelDate" layoutX="166.0" layoutY="180.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="glucoseGraph" layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0">
 <xAxis>
 <CategoryAxis side="BOTTOM" style="-fx-tick-label-fill: #0070c0;" tickLabelFill="#0070c0">
 <tickLabelFont>

@@ -42,7 +42,13 @@ public class ScreensFramework extends Application
     
     public static String sleepScreenID              = "sleepScreen";
     public static String sleepScreenFile            = "SleepScreen.fxml";
-
+    
+    public static String newAccountScreenID         = "newAccount";
+    public static String newAccountScreenFile       = "NewAccountScreen.fxml";
+            
+    public static String forgotPasswordScreenID     = "forgotPasswordScreen";
+    public static String forgotPasswordScreenFile   = "ForgotPasswordScreen.fxml";
+ 
     public static ScreensController mainContainer = new ScreensController();
    
     @Override
@@ -63,12 +69,21 @@ public class ScreensFramework extends Application
         mainContainer.loadScreen(ScreensFramework.profileScreenID, ScreensFramework.profileScreenFile);
         mainContainer.loadScreen(ScreensFramework.reportScreenID, ScreensFramework.reportScreenFile);
         mainContainer.loadScreen(ScreensFramework.sleepScreenID, ScreensFramework.sleepScreenFile);
-        
+        mainContainer.loadScreen(ScreensFramework.newAccountScreenID, ScreensFramework.newAccountScreenFile);
+        mainContainer.loadScreen(ScreensFramework.forgotPasswordScreenID, ScreensFramework.forgotPasswordScreenFile);
         mainContainer.setScreen(ScreensFramework.loginScreenID);
         
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
         Scene scene = new Scene(root);
+        try
+        {
+            scene.getStylesheets().add("chart.css");
+        }
+        catch (Exception ex)
+        { 
+            System.err.println("Cannot acquire stylesheet: " + ex.toString());
+        }
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -86,6 +101,8 @@ public class ScreensFramework extends Application
         mainContainer.unloadScreen(profileScreenID);
         mainContainer.unloadScreen(reportScreenID);
         mainContainer.unloadScreen(sleepScreenID);
+        mainContainer.unloadScreen(newAccountScreenID);
+        mainContainer.unloadScreen(forgotPasswordScreenID);
         
         mainContainer.loadScreen(ScreensFramework.loginScreenID, ScreensFramework.loginScreenFile);
         mainContainer.loadScreen(ScreensFramework.mainScreenID,  ScreensFramework.mainScreenFile);
@@ -97,7 +114,9 @@ public class ScreensFramework extends Application
         mainContainer.loadScreen(ScreensFramework.physicalActivityScreenID, ScreensFramework.physicalActivityScreenFile);
         mainContainer.loadScreen(ScreensFramework.profileScreenID, ScreensFramework.profileScreenFile);
         mainContainer.loadScreen(ScreensFramework.reportScreenID, ScreensFramework.reportScreenFile);
-        mainContainer.loadScreen(ScreensFramework.sleepScreenID, ScreensFramework.sleepScreenFile);  
+        mainContainer.loadScreen(ScreensFramework.sleepScreenID, ScreensFramework.sleepScreenFile); 
+        mainContainer.loadScreen(ScreensFramework.newAccountScreenID, ScreensFramework.newAccountScreenFile);  
+        mainContainer.loadScreen(ScreensFramework.forgotPasswordScreenID, ScreensFramework.forgotPasswordScreenFile);  
     }
     // In this case the main method is ignored this is just a fallback
     public static void main(String[] args) 

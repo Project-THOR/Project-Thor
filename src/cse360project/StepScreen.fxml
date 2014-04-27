@@ -42,7 +42,7 @@
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button><DatePicker fx:id="StepsDatePicker" layoutX="184.0" layoutY="200.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="StepsGraph" layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0">
+</Button><DatePicker fx:id="StepsDatePicker" layoutX="184.0" layoutY="200.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="StepsGraph" layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0" style="-fx-stroke: #0070c0;">
 <xAxis>
 <CategoryAxis side="BOTTOM" style="-fx-tick-label-fill: #0070c0;" tickLabelFill="#0070c0">
 <tickLabelFont>
