@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="StepsScreenMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse360project.StepsScreenController">
+<AnchorPane id="AnchorPane" fx:id="SleepScreenMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse360project.StepsScreenController">
 <children>
 <Label fx:id="UsernameDisplayLabel" alignment="CENTER_RIGHT" layoutX="666.0" layoutY="19.0" prefHeight="49.0" prefWidth="294.0" text="&lt;User Name goes Here&gt;" textFill="#0070c0">
 <font>
@@ -19,7 +19,7 @@
 <Font name="Segoe UI" size="72.0" />
 </font>
 </Label>
-<Button fx:id="StepsSaveButton" layoutX="27.0" layoutY="560.0" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Save" textFill="WHITE">
+<Button fx:id="SleepSaveButton" layoutX="27.0" layoutY="560.0" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Save" textFill="WHITE">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
@@ -29,20 +29,20 @@
 </Button><Label layoutX="34.0" layoutY="146.0" text="Hours of sleep:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
-</font></Label><TextField fx:id="NumberOfStepsField" layoutX="184.0" layoutY="142.0" prefHeight="35.0" prefWidth="223.0" promptText="Sleep" style="-fx-background-radius: 0;">
+</font></Label><TextField fx:id="NumberOfHoursField" layoutX="184.0" layoutY="142.0" prefHeight="35.0" prefWidth="223.0" promptText="Sleep" style="-fx-background-radius: 0;">
 
 </TextField><Label layoutX="34.0" layoutY="206.0" text="Select Date:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><Button fx:id="StepsCancelButton" layoutX="215.0" layoutY="560.0" onAction="#cancelButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
+</Label><Button fx:id="SleepCancelButton" layoutX="215.0" layoutY="560.0" onAction="#cancelButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button><DatePicker fx:id="StepsDatePicker" layoutX="184.0" layoutY="200.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="StepsGraph" layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0">
+</Button><DatePicker fx:id="SleepDatePicker" layoutX="184.0" layoutY="200.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="StepsGraph" layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0">
 <xAxis>
 <CategoryAxis side="BOTTOM" style="-fx-tick-label-fill: #0070c0;" tickLabelFill="#0070c0">
 <tickLabelFont>
