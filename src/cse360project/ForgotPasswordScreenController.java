@@ -1,7 +1,11 @@
 
 package cse360project;
 
-
+import static cse360project.StepsScreenController.databasePassword;
+import static cse360project.StepsScreenController.databaseUserName;
+import static cse360project.StepsScreenController.dbName;
+import static cse360project.StepsScreenController.url;
+import java.lang.*;
 import java.net.URL;
 import java.sql.*;
 import java.sql.Connection;
@@ -23,7 +27,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
-public class SleepScreenController implements Initializable, TransitionController 
+public class ForgotPasswordScreenController implements Initializable, TransitionController 
 {
     ScreensController myController;
 
@@ -39,11 +43,12 @@ public class SleepScreenController implements Initializable, TransitionControlle
     public String stepsDate;
 
     @FXML
-    private Button SleepSaveButton;
+    private Button ProfileSaveButton;
     @FXML
-    private Button SleepCancelButton;
+    private Button ProfileCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -56,7 +61,6 @@ public class SleepScreenController implements Initializable, TransitionControlle
     {
         myController = screenParent;
     }
-    
     @FXML
     private void handleButtonAction(ActionEvent event) 
     {

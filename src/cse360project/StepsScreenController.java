@@ -63,6 +63,7 @@ public class StepsScreenController implements Initializable, TransitionControlle
         ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
         LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
         series.setName("Steps");
+        
         // For some reason it won't let me use a for/foreach loop to add 
         String tempDate = MainScreenController.dateList.get(4);
         int tempSteps = Integer.parseInt(MainScreenController.stepsList.get(4));
@@ -110,7 +111,7 @@ public class StepsScreenController implements Initializable, TransitionControlle
         
         // Sets stepsDate equal to the string value of the date object that was 
         // selected in the date picker
-        stepsDate     = StepsDatePicker.getValue().toString();
+        stepsDate      = StepsDatePicker.getValue().toString();
         
         try 
         {  

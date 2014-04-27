@@ -1,7 +1,11 @@
 
 package cse360project;
 
-
+import static cse360project.StepsScreenController.databasePassword;
+import static cse360project.StepsScreenController.databaseUserName;
+import static cse360project.StepsScreenController.dbName;
+import static cse360project.StepsScreenController.url;
+import java.lang.*;
 import java.net.URL;
 import java.sql.*;
 import java.sql.Connection;
@@ -22,8 +26,11 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+import javafx.scene.control.ChoiceBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-public class SleepScreenController implements Initializable, TransitionController 
+public class NewUserScreenController implements Initializable, TransitionController 
 {
     ScreensController myController;
 
@@ -35,20 +42,29 @@ public class SleepScreenController implements Initializable, TransitionControlle
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
     
+    public String gender;
+    public String securityQuestion;
     public String numberOfSteps;
     public String stepsDate;
-
+    
     @FXML
-    private Button SleepSaveButton;
+    private ChoiceBox genderBox;
     @FXML
-    private Button SleepCancelButton;
+    private ChoiceBox securityBox;
+    @FXML
+    private Button ProfileCreateButton;
+    @FXML
+    private Button ProfileCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         UsernameDisplayLabel.setText(LoginScreenController.userName);
+        genderBox.setItems(FXCollections.observableArrayList("Male","Female"));
+        securityBox.setItems(FXCollections.observableArrayList("Name of your first pet: ","Street you grew up on: ", "Favorite color: ", "Mother's maiden name:"));
     }  
     
     @Override
@@ -56,13 +72,11 @@ public class SleepScreenController implements Initializable, TransitionControlle
     {
         myController = screenParent;
     }
-    
     @FXML
     private void handleButtonAction(ActionEvent event) 
     {
         
     }
-    
     
     private void goToMainScreen()
     {
@@ -74,6 +88,7 @@ public class SleepScreenController implements Initializable, TransitionControlle
     {
         //numberOfSteps = NumberOfStepsField.getText();
         //stepsDate     = StepsDateEntryField.getText();
+        gender = genderBox.getValue().toString();
         
         try 
         {  

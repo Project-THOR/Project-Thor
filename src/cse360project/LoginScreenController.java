@@ -114,13 +114,15 @@ public class LoginScreenController implements Initializable, TransitionControlle
     @FXML 
     private void goToCreateAccount(ActionEvent event)
     {
-        // TO DO
+        ScreensFramework.GlobalRefresh();
+        myController.setScreen(ScreensFramework.newAccountScreenID);
     }
     
      @FXML 
     private void goToForgotPassword(ActionEvent event)
     {
-        // TO DO
+        ScreensFramework.GlobalRefresh();
+        myController.setScreen(ScreensFramework.forgotPasswordScreenID);
     }
   
     public static void showLoginError()
