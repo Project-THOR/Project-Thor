@@ -63,9 +63,14 @@ public class ExportScreenController implements Initializable, TransitionControll
         goToMainScreen();
     }
     
-    
     private void goToMainScreen()
     {
         myController.setScreen(ScreensFramework.mainScreenID);
+    }
+    
+    @FXML
+    private void cancelButtonPressed(ActionEvent event)
+    {
+        goToMainScreen();
     }
 }

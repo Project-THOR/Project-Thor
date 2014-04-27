@@ -24,6 +24,13 @@
 <font>
 <Font name="Segoe UI" size="32.0" />
 </font>
+</Button><Button fx:id="ExportCancelButton" layoutX="24.0" layoutY="559.0" onAction="#cancelButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
+<cursor>
+<Cursor fx:constant="HAND" />
+</cursor>
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
 </Button>
 </children>
 </AnchorPane>

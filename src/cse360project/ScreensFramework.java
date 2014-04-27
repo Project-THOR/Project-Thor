@@ -76,6 +76,14 @@ public class ScreensFramework extends Application
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
         Scene scene = new Scene(root);
+        try
+        {
+            scene.getStylesheets().add("chart.css");
+        }
+        catch (Exception ex)
+        { 
+            System.err.println("Cannot acquire stylesheet: " + ex.toString());
+        }
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -63,10 +63,12 @@ public class StepsScreenController implements Initializable, TransitionControlle
         ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
         LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
         series.setName("Steps");
-        
+ 
+        String tempDate;
+        int tempSteps;
         // For some reason it won't let me use a for/foreach loop to add 
-        String tempDate = MainScreenController.dateList.get(4);
-        int tempSteps = Integer.parseInt(MainScreenController.stepsList.get(4));
+        tempDate = MainScreenController.dateList.get(4);
+        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(4));
         series.getData().add(new XYChart.Data(tempDate, tempSteps));
         
         tempDate = MainScreenController.dateList.get(3);
