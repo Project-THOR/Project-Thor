@@ -73,24 +73,24 @@ public class BloodGlucoseScreenController implements Initializable, TransitionCo
         series.setName("Glucose Level");
         
         // For some reason it won't let me use a for/foreach loop to add 
-        String tempDate = MainScreenController.dateList.get(0);
-        int tempLevel = Integer.parseInt(MainScreenController.levelList.get(0));
+        String tempDate = MainScreenController.dateList.get(4);
+        int tempLevel = Integer.parseInt(MainScreenController.levelList.get(4));
         series.getData().add(new XYChart.Data(tempDate, tempLevel));
         
-        tempDate = MainScreenController.dateList.get(1);
-        tempLevel = Integer.parseInt(MainScreenController.levelList.get(1));
+        tempDate = MainScreenController.dateList.get(3);
+        tempLevel = Integer.parseInt(MainScreenController.levelList.get(3));
         series.getData().add(new XYChart.Data(tempDate, tempLevel));
         
         tempDate = MainScreenController.dateList.get(2);
         tempLevel = Integer.parseInt(MainScreenController.levelList.get(2));
         series.getData().add(new XYChart.Data(tempDate, tempLevel));
         
-        tempDate = MainScreenController.dateList.get(3);
-        tempLevel  = Integer.parseInt(MainScreenController.levelList.get(3));
+        tempDate = MainScreenController.dateList.get(1);
+        tempLevel  = Integer.parseInt(MainScreenController.levelList.get(1));
         series.getData().add(new XYChart.Data(tempDate, tempLevel));
         
-        tempDate = MainScreenController.dateList.get(4);
-        tempLevel  = Integer.parseInt(MainScreenController.levelList.get(4));
+        tempDate = MainScreenController.dateList.get(0);
+        tempLevel  = Integer.parseInt(MainScreenController.levelList.get(0));
         series.getData().add(new XYChart.Data(tempDate, tempLevel));
         
         lineChartData.add(series);
@@ -109,7 +109,6 @@ public class BloodGlucoseScreenController implements Initializable, TransitionCo
     {
         
     }
-    
     
     private void goToMainScreen()
     {

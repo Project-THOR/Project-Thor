@@ -44,12 +44,11 @@ public class ScreensFramework extends Application
     public static String sleepScreenFile            = "SleepScreen.fxml";
     
     public static String newAccountScreenID         = "newAccount";
-    public static String newAccountScreenFile       = "newAccountScreen.fxml";
-    
-        
+    public static String newAccountScreenFile       = "NewAccountScreen.fxml";
+            
     public static String forgotPasswordScreenID     = "forgotPasswordScreen";
-    public static String forgotPasswordScreenFile   = "forgotPasswordScreen.fxml";
-    
+    public static String forgotPasswordScreenFile   = "ForgotPasswordScreen.fxml";
+ 
     public static ScreensController mainContainer = new ScreensController();
    
     @Override
@@ -77,6 +76,14 @@ public class ScreensFramework extends Application
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
         Scene scene = new Scene(root);
+        try
+        {
+            scene.getStylesheets().add("chart.css");
+        }
+        catch (Exception ex)
+        { 
+            System.err.println("Cannot acquire stylesheet: " + ex.toString());
+        }
         primaryStage.setScene(scene);
         primaryStage.show();
     }
