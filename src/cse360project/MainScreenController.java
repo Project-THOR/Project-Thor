@@ -117,16 +117,7 @@ public class MainScreenController implements Initializable, TransitionController
                             // adds the values that were obtained from the database to a local arraylist
                             dateList.add(dataResult.getString(3));
                             stepsList.add(dataResult.getString(14));
-                        }
-                        else
-                        {
-                            // do nothing
-                        }
-                        /*System.out.println();
-                        System.out.print(dataResult.getString(2)+ " \t\t");
-                        System.out.print(dataResult.getString(3)+ " \t");
-                        System.out.print(dataResult.getString(14));  
-                        System.out.println();*/
+                        } 
                     }   
                 }
                          
@@ -197,8 +188,7 @@ public class MainScreenController implements Initializable, TransitionController
                 // mySQL Query: SELECT * FROM(SELECT * FROM mydb.userdata WHERE user_name = 'TestUser' ORDER BY date DESC LIMIT 5) sub ORDER BY date ASC;
                 // It selects the userdata of the user that is logged in and gets the 5 latest (DESC) entries by date and then sorts so we get the dates
                 // in order of Earliest date to the most recent date
-                String graphQuery = "SELECT * FROM(SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName + 
-                                                                                        "' ORDER BY date DESC LIMIT 6) sub ORDER BY date ASC";
+                String graphQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +  "' ORDER BY date DESC";
                 PreparedStatement dataStatement = connection.prepareStatement(graphQuery);
                 ResultSet dataResult = dataStatement.executeQuery();
                 if(dataResult.next())
@@ -206,9 +196,14 @@ public class MainScreenController implements Initializable, TransitionController
                     System.out.print("Username \t\tDate \t\tSteps");
                     while(dataResult.next())
                     {
+                        //  Adds all of the non-null entries for Blood Glucose to the list
+                         if(dataResult.getString(12) != null && dataResult.getString(3) != null)
+                         {
+                            dateList.add(dataResult.getString(3));
+                            levelList.add(dataResult.getString(12));
+                         }
                         // adds the values that were obtained from the database to a local arraylist
-                        dateList.add(dataResult.getString(3));
-                        levelList.add(dataResult.getString(12));
+                       
                         // Writes data to the console for debugging purposes.
                         System.out.println();
                         System.out.print(dataResult.getString(2)+ " \t\t");

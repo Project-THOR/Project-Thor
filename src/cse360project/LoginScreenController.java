@@ -118,7 +118,7 @@ public class LoginScreenController implements Initializable, TransitionControlle
         myController.setScreen(ScreensFramework.newAccountScreenID);
     }
     
-     @FXML 
+    @FXML 
     private void goToForgotPassword(ActionEvent event)
     {
         ScreensFramework.GlobalRefresh();

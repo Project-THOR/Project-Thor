@@ -54,7 +54,7 @@
 </CategoryAxis>
 </xAxis>
 <yAxis>
-<NumberAxis fx:id="glucoseGraph" autoRanging="false" minorTickCount="0" side="LEFT" tickLabelFill="#0070c0" tickUnit="50.0" upperBound="250.0">
+<NumberAxis autoRanging="false" minorTickCount="0" side="LEFT" tickLabelFill="#0070c0" tickUnit="50.0" upperBound="250.0">
 <tickLabelFont>
 <Font name="Segoe UI" size="12.0" />
 </tickLabelFont>
