@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/MainScreenController.java</file>
             <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/ExportScreenController.java</file>
             <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/LoginScreenController.java</file>
             <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/ExportPDF.java</file>
             <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/StepsScreenController.java</file>
+=======
+            <file>file:/C:/Users/jlucker/Documents/GitHub/Project-Thor/src/cse360project/StepsScreenController.java</file>
+            <file>file:/C:/Users/jlucker/Documents/GitHub/Project-Thor/src/cse360project/MainScreenController.java</file>
+            <file>file:/C:/Users/jlucker/Documents/GitHub/Project-Thor/src/cse360project/BloodGlucoseScreenController.java</file>
+>>>>>>> 307ff6dbdaa3ca01310685d067ab68343176881e
         </group>
     </open-files>
 </project-private>

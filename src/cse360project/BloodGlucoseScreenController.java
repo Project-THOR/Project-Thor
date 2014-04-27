@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +23,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
 
 public class BloodGlucoseScreenController implements Initializable, TransitionController 
 {
@@ -35,8 +40,17 @@ public class BloodGlucoseScreenController implements Initializable, TransitionCo
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
     
-    public String numberOfSteps;
-    public String stepsDate;
+    public String glucoseValue;
+    public String dateValue;
+    
+    @FXML
+    public TextField glucoseLevel;
+    @FXML
+    public  DatePicker glucoseLevelDate;
+    @FXML
+    public TextField time; 
+    @FXML
+    public TextArea notes;
 
     @FXML
     private Button BloodGlucoseSaveButton;
@@ -44,11 +58,45 @@ public class BloodGlucoseScreenController implements Initializable, TransitionCo
     private Button BloodGlucoseCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
+    @FXML
+    public LineChart<String, Number> glucoseGraph;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
-    {
+    {          
+       
+        // Displays username in the top right corner of the scene
         UsernameDisplayLabel.setText(LoginScreenController.userName);
+        // Code that displays steps data on the chart
+        ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
+        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
+        series.setName("Glucose Level");
+        
+        // For some reason it won't let me use a for/foreach loop to add 
+        String tempDate = MainScreenController.dateList.get(0);
+        int tempLevel = Integer.parseInt(MainScreenController.levelList.get(0));
+        series.getData().add(new XYChart.Data(tempDate, tempLevel));
+        
+        tempDate = MainScreenController.dateList.get(1);
+        tempLevel = Integer.parseInt(MainScreenController.levelList.get(1));
+        series.getData().add(new XYChart.Data(tempDate, tempLevel));
+        
+        tempDate = MainScreenController.dateList.get(2);
+        tempLevel = Integer.parseInt(MainScreenController.levelList.get(2));
+        series.getData().add(new XYChart.Data(tempDate, tempLevel));
+        
+        tempDate = MainScreenController.dateList.get(3);
+        tempLevel  = Integer.parseInt(MainScreenController.levelList.get(3));
+        series.getData().add(new XYChart.Data(tempDate, tempLevel));
+        
+        tempDate = MainScreenController.dateList.get(4);
+        tempLevel  = Integer.parseInt(MainScreenController.levelList.get(4));
+        series.getData().add(new XYChart.Data(tempDate, tempLevel));
+        
+        lineChartData.add(series);
+        
+        glucoseGraph.setData(lineChartData);
+        glucoseGraph.createSymbolsProperty();
     }  
     
     @Override
@@ -71,8 +119,8 @@ public class BloodGlucoseScreenController implements Initializable, TransitionCo
     @FXML
     private void saveButtonPressed(ActionEvent event)
     {
-        //numberOfSteps = NumberOfStepsField.getText();
-        //stepsDate     = StepsDateEntryField.getText();
+        glucoseValue = glucoseLevel.getText();
+        dateValue = glucoseLevelDate.getValue().toString();
         
         try 
         {  
@@ -95,28 +143,28 @@ public class BloodGlucoseScreenController implements Initializable, TransitionCo
             if (connection != null) 
             {
                 // Checks to see if there is already an entry in the database for the user on the spcified date
-                String stepsQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + stepsDate + "'";
-                PreparedStatement checkStatement = connection.prepareStatement(stepsQuery);
+                String glucoseQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + dateValue + "'";
+                PreparedStatement checkStatement = connection.prepareStatement(glucoseQuery);
                 ResultSet result = checkStatement.executeQuery();
                 // If there is already an entry for that date, the UPDATE statement is used so that it will just update the exiting entry for that 
                 // date instead of creating a whole new entry with the same date.  --->NOTE: Spaces are important <----
                 if(result.next())
                 {
-                    String stepsUpdate = "UPDATE mydb.userData SET steps = '" + numberOfSteps +"' WHERE user_name = '" + 
-                                                                                LoginScreenController.userName + "' AND date = '" + stepsDate + "'"; 
+                    String glucoseLevelUpdate = "UPDATE mydb.userData SET bloodGlucose = '" + glucoseValue +"' WHERE user_name = '" + 
+                                                                                LoginScreenController.userName + "' AND date = '" + dateValue + "'"; 
                     Statement updateStatement = connection.createStatement();
-                    updateStatement.executeUpdate(stepsUpdate);
+                    updateStatement.executeUpdate(glucoseLevelUpdate);
                     goToMainScreen();
                     connection.close();
                 }
                 // If there is not an entry already in the database for the specified date, the INSERT statement is used to create a new entry in the database.
                 else
                 {
-                    String stepsInsert = "INSERT INTO mydb.userData (user_name, date, steps ) VALUES (\""+ LoginScreenController.userName+ "\",\"" + 
-                                                                                                           stepsDate + "\", \"" + numberOfSteps +"\")";
+                    String glucoseLevelInsert = "INSERT INTO mydb.userData (user_name, date, bloodGlucose ) VALUES (\""+ LoginScreenController.userName+ "\",\"" + 
+                                                                                                           dateValue + "\", \"" + glucoseValue +"\")";
                     Statement insertStatement = connection.createStatement();
                     // Executes the statement and writes to the datebase.
-                    insertStatement.executeUpdate(stepsInsert);
+                    insertStatement.executeUpdate(glucoseLevelInsert);
                     // Returns to the main screen 
                     goToMainScreen();
                     // Closes the connection to the database.
@@ -136,6 +184,17 @@ public class BloodGlucoseScreenController implements Initializable, TransitionCo
 	}
         // Refreshes all of the scenes so that newly entered data will be reflected  
         ScreensFramework.GlobalRefresh();
+    }
+    
+    public void showEntryError()
+    {
+        Stage newStage = new Stage();
+        VBox comp = new VBox();
+        Label loginError = new Label("Please Enter a Number");
+        comp.getChildren().add(loginError);
+        Scene stageScene = new Scene(comp, 300, 300);
+        newStage.setScene(stageScene);
+        newStage.show();
     }
     
     @FXML

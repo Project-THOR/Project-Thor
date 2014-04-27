@@ -40,6 +40,7 @@ public class StepsScreenController implements Initializable, TransitionControlle
     
     public String numberOfSteps;
     public String stepsDate;
+    
     @FXML
     private Button StepsSaveButton;
     @FXML
@@ -56,32 +57,32 @@ public class StepsScreenController implements Initializable, TransitionControlle
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-       
         // Displays username in the top right corner of the scene
         UsernameDisplayLabel.setText(LoginScreenController.userName);
         // Code that displays steps data on the chart
         ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
         LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
         series.setName("Steps");
+        
         // For some reason it won't let me use a for/foreach loop to add 
-        String tempDate = MainScreenController.dateList.get(0);
-        int tempSteps = Integer.parseInt(MainScreenController.stepsList.get(0));
+        String tempDate = MainScreenController.dateList.get(4);
+        int tempSteps = Integer.parseInt(MainScreenController.stepsList.get(4));
         series.getData().add(new XYChart.Data(tempDate, tempSteps));
         
-        tempDate = MainScreenController.dateList.get(1);
-        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(1));
+        tempDate = MainScreenController.dateList.get(3);
+        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(3));
         series.getData().add(new XYChart.Data(tempDate, tempSteps));
         
         tempDate = MainScreenController.dateList.get(2);
         tempSteps = Integer.parseInt(MainScreenController.stepsList.get(2));
         series.getData().add(new XYChart.Data(tempDate, tempSteps));
         
-        tempDate = MainScreenController.dateList.get(3);
-        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(3));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps))
-                ;
-        tempDate = MainScreenController.dateList.get(4);
-        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(4));
+        tempDate = MainScreenController.dateList.get(1);
+        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(1));
+        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        
+        tempDate = MainScreenController.dateList.get(0);
+        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(0));
         series.getData().add(new XYChart.Data(tempDate, tempSteps));
         
         lineChartData.add(series);
@@ -110,7 +111,7 @@ public class StepsScreenController implements Initializable, TransitionControlle
         
         // Sets stepsDate equal to the string value of the date object that was 
         // selected in the date picker
-        stepsDate     = StepsDatePicker.getValue().toString();
+        stepsDate      = StepsDatePicker.getValue().toString();
         
         try 
         {  
