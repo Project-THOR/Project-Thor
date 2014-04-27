@@ -56,6 +56,7 @@ public class SleepScreenController implements Initializable, TransitionControlle
     {
         myController = screenParent;
     }
+    
     @FXML
     private void handleButtonAction(ActionEvent event) 
     {
