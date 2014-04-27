@@ -2,6 +2,7 @@
 package cse360project;
 
 import static cse360project.LoginScreenController.showLoginError;
+import java.io.IOException;
 import java.util.*;
 import java.net.URL;
 import java.sql.Connection;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
 
 
 public class MainScreenController implements Initializable, TransitionController
@@ -271,7 +273,10 @@ public class MainScreenController implements Initializable, TransitionController
     
     @FXML 
     private void goToExportScreen(ActionEvent event)
-    {
+    { 
+        
+        // Creates images of all of the most recent graphs
+        ExportPDF.start();
         stepsList.clear();
         dateList.clear();
         try 
@@ -328,8 +333,8 @@ public class MainScreenController implements Initializable, TransitionController
             e.printStackTrace();
             return;
 	}
-         // Refreshes all of the scenes so that newly entered data will be reflected  
-        ScreensFramework.GlobalRefresh();
+       // Refreshes all of the scenes so that newly entered data will be reflected  
+       ScreensFramework.GlobalRefresh();
        myController.setScreen(ScreensFramework.exportScreenID);
     }
 }
