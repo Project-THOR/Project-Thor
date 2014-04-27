@@ -48,6 +48,7 @@ public class SleepScreenController implements Initializable, TransitionControlle
     private Label UsernameDisplayLabel;
     @FXML
     private DatePicker SleepDatePicker;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
