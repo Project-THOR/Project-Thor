@@ -29,21 +29,37 @@ import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+<<<<<<< HEAD
+=======
 import javafx.scene.control.Separator;
 
+>>>>>>> 3d2fe77e7a80fbfc7dabb4b0c880668e1397c71b
 
 public class NewUserScreenController implements Initializable, TransitionController 
 {
     ScreensController myController;
 
+<<<<<<< HEAD
+    public static String stepsUserName      = LoginScreenController.userName;
+    public static String password           = LoginScreenController.password;
+=======
     public static String userName;
     public static String password;
+>>>>>>> 3d2fe77e7a80fbfc7dabb4b0c880668e1397c71b
     public static String url                = "jdbc:mysql://168.62.213.183:3306/";
     public static String dbName             = "mydb";
     public static String driver             = "com.mysql.jdbc.Driver";
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
     
+<<<<<<< HEAD
+    public String gender;
+    public String securityQuestion;
+    public String numberOfSteps;
+    public String stepsDate;
+    
+    @FXML
+=======
  
     public String email;
     public String numberOfSteps;
@@ -62,8 +78,12 @@ public class NewUserScreenController implements Initializable, TransitionControl
     @FXML
     private TextField answerField;
     @FXML
+<<<<<<< HEAD
     private TextField birthDateField;
     @FXML
+=======
+>>>>>>> 3d2fe77e7a80fbfc7dabb4b0c880668e1397c71b
+>>>>>>> f406ace76e174c6b166e520c7bfc31ccac520e4f
     private ChoiceBox genderBox;
     @FXML
     private ChoiceBox securityBox;
@@ -73,17 +93,27 @@ public class NewUserScreenController implements Initializable, TransitionControl
     private Button ProfileCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
+<<<<<<< HEAD
+=======
     @FXML
     private TextField usernameField;
+>>>>>>> 3d2fe77e7a80fbfc7dabb4b0c880668e1397c71b
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
+<<<<<<< HEAD
+    {
+        UsernameDisplayLabel.setText(LoginScreenController.userName);
+        genderBox.setItems(FXCollections.observableArrayList("Male","Female"));
+        securityBox.setItems(FXCollections.observableArrayList("Name of your first pet: ","Street you grew up on: ", "Favorite color: ", "Mother's maiden name:"));
+=======
     {  
         genderBox = new ChoiceBox();
         genderBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Male","Female"));
         securityBox = new ChoiceBox();
         securityBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Name of your first pet: ","Street you grew up on: ", "Mother's maiden name:","Name of first teacher: ", "Childhood nickname: ","City or town of first job: "));
+>>>>>>> 3d2fe77e7a80fbfc7dabb4b0c880668e1397c71b
     }  
     
     @Override
@@ -107,14 +137,31 @@ public class NewUserScreenController implements Initializable, TransitionControl
     {
         //numberOfSteps = NumberOfStepsField.getText();
         //stepsDate     = StepsDateEntryField.getText();
+<<<<<<< HEAD
         userName = userNameField.getText();
         password = passwordField.getText();
         email = emailField.getText();
         birthdate = birthDateField.getText();
+=======
+<<<<<<< HEAD
+        gender = genderBox.getValue().toString();
+        
+=======
+        userName = userNameField.getValue().toString();
+        password = passwordField.getValue().toString();
+        email = emailField.getValue().toString();
+        birthdate = emailField.getValue().toString();
+        answer = answerField.getValue().toString();
+>>>>>>> f406ace76e174c6b166e520c7bfc31ccac520e4f
         gender = genderBox.getValue().toString();
         securityQuestion = securityBox.getValue().toString();
         answer = answerField.getText();
         
+<<<<<<< HEAD
+=======
+       
+>>>>>>> 3d2fe77e7a80fbfc7dabb4b0c880668e1397c71b
+>>>>>>> f406ace76e174c6b166e520c7bfc31ccac520e4f
         try 
         {  
             Class.forName("com.mysql.jdbc.Driver");
