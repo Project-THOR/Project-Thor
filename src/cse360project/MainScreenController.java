@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 package cse360project;
 
@@ -462,5 +461,4 @@ public class MainScreenController implements Initializable, TransitionController
        myController.setScreen(ScreensFramework.exportScreenID);
     }
 }
-=======
->>>>>>> FETCH_HEAD
+

@@ -61,8 +61,8 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        UsernameDisplayLabel.setText(LoginScreenController.userName);
         securityBox = new ChoiceBox();
+// get security question from db
         securityBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Name of your first pet: ","Street you grew up on: ", "Mother's maiden name:","Name of first teacher: ", "Childhood nickname: ","City or town of first job: "));
     }  
     

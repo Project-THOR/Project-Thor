@@ -2,21 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/MainScreenController.java</file>
-            <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/ExportScreenController.java</file>
-            <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/LoginScreenController.java</file>
-            <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/ExportPDF.java</file>
-            <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/StepsScreenController.java</file>
-            <file>file:/C:/Users/Risingdamp220/Documents/GitHub/Project-Thor/src/cse360project/ReportScreenController.java</file>
-=======
-            <file>file:/Users/thomasboudreau/Documents/Workspaces/GitHub/Project-Thor/src/cse360project/MainScreenController.java</file>
->>>>>>> 015a04b6abe9a8358807719bc53059a89c8dacfd
+            <file>file:/C:/Users/Owner/Documents/GitHub/Project-Thor/src/cse360project/MainScreenController.java</file>
+            <file>file:/C:/Users/Owner/Documents/GitHub/Project-Thor/src/cse360project/BloodGlucoseScreenController.java</file>
+            <file>file:/C:/Users/Owner/Documents/GitHub/Project-Thor/src/cse360project/NewUserScreenController.java</file>
+            <file>file:/C:/Users/Owner/Documents/GitHub/Project-Thor/src/cse360project/ForgotPasswordScreenController.java</file>
+            <file>file:/C:/Users/Owner/Documents/GitHub/Project-Thor/src/cse360project/LoginScreenController.java</file>
         </group>
->>>>>>> FETCH_HEAD
     </open-files>
 </project-private>
