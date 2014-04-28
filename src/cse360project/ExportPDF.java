@@ -1,35 +1,24 @@
 
 package cse360project;
 
-import com.itextpdf.awt.DefaultFontMapper;
 import java.io.FileOutputStream;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfTemplate;
 import java.awt.Desktop;
-import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
-import java.io.File;
 import java.io.IOException;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
@@ -49,10 +38,10 @@ import javafx.scene.chart.CategoryAxis;
 
 public class ExportPDF 
 {
-    private static String FILE = "c:/temp/THOReport.pdf";
+    private static String FILE    = "c:/temp/THOReport.pdf";
     private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 36, Font.BOLD);
-    private static Font redFont = new Font(Font.FontFamily.HELVETICA,   16, Font.NORMAL);
-    private static Font subFont = new Font(Font.FontFamily.HELVETICA,   16, Font.BOLD);
+    private static Font redFont   = new Font(Font.FontFamily.HELVETICA, 16, Font.NORMAL);
+    private static Font subFont   = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
     private static Font smallFont = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL);
 
     public static String username           = "TestUser";
@@ -75,16 +64,33 @@ public class ExportPDF
     public static List<String> pressureList    = new ArrayList<String>();
     public static List<String> heartList       = new ArrayList<String>();
     
+    public static int chartWidth  = 800;
+    public static int chartHeight = 600;
+     
+    public static final String[] IMAGES =
+    {
+        "ActivityChart.png",
+        "HeightChart.png",
+        "WeightChart.png",
+        "BMIChart.png",
+        "CaloriesChart.png",
+        "GlucoseChart.png",
+        "PressureChart.png",
+        "HeartRateChart.png",
+        "SleepChart.png",
+        "StepsChart.png"
+    };
+    
   public static void create() 
   {
     try 
     {
-        Document document = new Document(PageSize.A4.rotate());
+        Document document = new Document(PageSize.A3.rotate(), 10, 10, 10, 10);
         PdfWriter.getInstance(document, new FileOutputStream(FILE));
         document.open();
         addMetaData(document);
         addTitlePage(document);
-        System.out.println("Woot it Worked!");
+        addImages(document);
         document.close();
         
         //writeChartToPDF(generateBarChart(), 500, 400);
@@ -135,18 +141,30 @@ public class ExportPDF
     document.add(preface);
     document.add(table);   
   }
-
-   public static PdfPTable createTable1() throws DocumentException 
+  public static void addImages(Document document) throws DocumentException, IOException 
    {
-        PdfPTable table = new PdfPTable(3);
-        
-        
+      Image image;
+      for (int i = 0; i < IMAGES.length; i++) 
+      {
+            image = Image.getInstance(String.format(IMAGES[i]));
+            
+            /*if (image.getScaledWidth() > chartWidth || image.getScaledHeight() > chartHeight) 
+            {
+                image.scaleToFit(chartWidth, chartHeight);
+            }*/
+           //document.add(new Paragraph(String.format("%s is an image of type %s", IMAGES[i], image.getClass().getName())));
+           document.add(image);  
+      }
+   }
+   public static PdfPTable createTable1() throws DocumentException 
+   {          
+        PdfPTable table = new PdfPTable(11);
+
         PdfPCell cell = new PdfPCell(new Phrase("Date"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-        /*cell = new PdfPCell(new Phrase("Weight"));
+        
+        cell = new PdfPCell(new Phrase("Weight"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
 
@@ -156,9 +174,9 @@ public class ExportPDF
         
         cell = new PdfPCell(new Phrase("BMI"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(cell);*/
+        table.addCell(cell);
 
-        /*cell = new PdfPCell(new Phrase("Sleep"));
+        cell = new PdfPCell(new Phrase("Sleep"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
@@ -172,24 +190,26 @@ public class ExportPDF
         
         cell = new PdfPCell(new Phrase("Blood Pressure"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(cell);*/
-                
-        cell = new PdfPCell(new Phrase("Steps"));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
-        
+         
         cell = new PdfPCell(new Phrase("Blood Glucose"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         
-        /*cell = new PdfPCell(new Phrase("Cholesterol"));
+        cell = new PdfPCell(new Phrase("Steps"));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(cell);*/
-
-        //float[] columnWidths = new float[] {20f, 20f};
-        //table.setWidths(columnWidths);
+        table.addCell(cell);
+        
+        cell = new PdfPCell(new Phrase("Heart Rate"));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+        
+        
+        float[] columnWidths = new float[] {25f, 25f, 25f, 25f, 15f, 25f, 25f, 25f, 25f, 25f, 25f};
+        //float[] columnWidths = new float[] {20f, 15f, 15f, 15f, 15f, 15f, 15f, 20f, 20f, 15f, 25f};
+        table.setWidths(columnWidths);
             
-        table.setHeaderRows(3);
+        table.setHeaderRows(11);
         
         for(int i = 0; i < MainScreenController.dateList.size(); i++)
         {
@@ -198,19 +218,84 @@ public class ExportPDF
             {
                 date = "No Data";
             }
+            
+            String weight = MainScreenController.weightList.get(i);
+            if(weight == null)
+            {
+                weight = "No Data";
+            }
+            
+            String height = MainScreenController.heightList.get(i);
+            if(height == null)
+            {
+                height = "No Data";
+            }
+           
+            String bmi = MainScreenController.BMIList.get(i);
+            if(bmi == null)
+            {
+                bmi = "No Data";
+            }   
+             
+            String sleep = MainScreenController.sleepList.get(i);
+            if(sleep == null)
+            {
+                sleep = "No Data";
+            }
+            
+            String calories = MainScreenController.caloriesList.get(i);
+            if(calories == null)
+            {
+                calories = "No Data";
+            }
+            
+            String activity = MainScreenController.activityList.get(i);
+            if(activity == null)
+            {
+                activity = "No Data";
+            }
+                
+            String pressure = MainScreenController.bloodPressureList.get(i);
+            if(pressure == null)
+            {
+                pressure = "No Data";
+            }
+            
+            String glucose = MainScreenController.glucoseList.get(i);
+            if(glucose == null)
+            {
+                glucose = "No Data";
+            }
+                       
             String steps = MainScreenController.stepsList.get(i);
             if(steps == null)
             {
                 steps = "No Data";
             }
-            String glucose = MainScreenController.levelList.get(i);
-            if(glucose == null)
+            
+            String heart = MainScreenController.heartList.get(i);
+            if(heart == null)
             {
-                glucose = "No Data";
+                heart = "No Data";
             }
+            
+            /*String activityMin = MainScreenController.activityMinList.get(i);
+            if(activityMin == null)
+            {
+                activityMin = "No Data";
+            }*/
+            
             table.addCell(date);
-            table.addCell(steps);
+            table.addCell(weight);
+            table.addCell(height);
+            table.addCell(bmi);
+            table.addCell(sleep);
+            table.addCell(calories);
+            table.addCell(activity);
+            table.addCell(pressure);
             table.addCell(glucose);
+            table.addCell(steps);
+            table.addCell(heart);
         }     
         return table;
     }
@@ -386,7 +471,9 @@ public class ExportPDF
                 return null;
             }
         };
+        
         Thread thread1 = new Thread(task);
+        thread1.setPriority(Thread.MIN_PRIORITY);
         thread1.start();
         //Platform.exit();
     }

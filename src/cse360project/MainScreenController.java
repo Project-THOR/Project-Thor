@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 package cse360project;
 
@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,20 +24,27 @@ import javafx.scene.control.Label;
 
 public class MainScreenController implements Initializable, TransitionController
 {
-    public static String stepsUserName      = LoginScreenController.userName;
-    public static String password           = LoginScreenController.password;
-    public static String url                = "jdbc:mysql://168.62.213.183:3306/";
-    public static String dbName             = "mydb";
-    public static String driver             = "com.mysql.jdbc.Driver";
-    public static String databaseUserName   = "CSE360Team";
-    public static String databasePassword   = "FitnessTeam#360";
+    public static String stepsUserName              = LoginScreenController.userName;
+    public static String password                   = LoginScreenController.password;
+    public static String url                        = "jdbc:mysql://168.62.213.183:3306/";
+    public static String dbName                     = "mydb";
+    public static String driver                     = "com.mysql.jdbc.Driver";
+    public static String databaseUserName           = "CSE360Team";
+    public static String databasePassword           = "FitnessTeam#360";
     
-    public static List<String> stepsList = new ArrayList<String>();
-    public static List<String> sleepList = new ArrayList<String>();
-    public static List<String> bloodPressureList = new ArrayList<String>();
-    public static List<String> dateList  = new ArrayList<String>();
-    public static List<String> levelList = new ArrayList<String>();
-    public static List<String> activityList = new ArrayList<String>();
+    public static List<String> stepsList            = new ArrayList<String>();
+    public static List<String> sleepList            = new ArrayList<String>();
+    public static List<String> bloodPressureList    = new ArrayList<String>();
+    public static List<String> dateList             = new ArrayList<String>();
+    public static List<String> levelList            = new ArrayList<String>();
+    public static List<String> activityList         = new ArrayList<String>();
+    public static List<String> activityMinList      = new ArrayList<String>(); 
+    public static List<String> heartList            = new ArrayList<String>();
+    public static List<String> glucoseList          = new ArrayList<String>();
+    public static List<String> weightList           = new ArrayList<String>();
+    public static List<String> heightList           = new ArrayList<String>();
+    public static List<String> BMIList              = new ArrayList<String>();
+    public static List<String> caloriesList         = new ArrayList<String>();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -64,7 +73,7 @@ public class MainScreenController implements Initializable, TransitionController
     @FXML
     private Button      ReportButton;
     @FXML
-    private Button      ExportButton;
+    private Button      CaloriesButton;
     @FXML
     private Button      LogoutButton;
    
@@ -390,19 +399,40 @@ public class MainScreenController implements Initializable, TransitionController
     @FXML 
     private void goToReportScreen(ActionEvent event)
     {
-        // Refreshes all of the scenes so that newly entered data will be reflected <--- NOTE: Goes right before the screen transition
-        ScreensFramework.GlobalRefresh();
-        myController.setScreen(ScreensFramework.reportScreenID);
-    }
-    
-    @FXML 
-    private void goToExportScreen(ActionEvent event)
-    { 
+        Task task = new Task<Void>() 
+        {
+            public Void call()
+            {
+                Platform.runLater(new Runnable() 
+                {
+                    public void run()
+                    {
+                        myController.setScreen(ScreensFramework.reportScreenID);
+                    }
+                }); 
+                 return null;
+            }
+        };
+        Thread tThread = new Thread(task);
+        tThread.setPriority(Thread.MAX_PRIORITY);
+        tThread.start();
         
-        // Creates images of all of the most recent graphs
         ExportPDF.start();
-        stepsList.clear();
+        
         dateList.clear();
+        stepsList.clear();
+        sleepList.clear();
+        bloodPressureList.clear();
+        levelList.clear();
+        activityList.clear();
+        activityMinList.clear();
+        heartList.clear();
+        glucoseList.clear();
+        weightList.clear();
+        heightList.clear();
+        BMIList.clear();
+        caloriesList.clear();
+        
         try 
         {  
             Class.forName("com.mysql.jdbc.Driver");
@@ -430,12 +460,20 @@ public class MainScreenController implements Initializable, TransitionController
                 ResultSet dataResult = dataStatement.executeQuery();
                 if(dataResult.next())
                 {
-                    System.out.print("Username \t\tDate \t\tSteps");
                     while(dataResult.next())
                     {
                         dateList.add(dataResult.getString(3));
+                        weightList.add(dataResult.getString(4));
+                        heightList.add(dataResult.getString(5));
+                        BMIList.add(dataResult.getString(6));
+                        sleepList.add(dataResult.getString(7));
+                        caloriesList.add(dataResult.getString(8));
+                        activityList.add(dataResult.getString(9));
+                        bloodPressureList.add(dataResult.getString(11));
+                        glucoseList.add(dataResult.getString(12));
                         stepsList.add(dataResult.getString(14));
-                        levelList.add(dataResult.getString(12));    
+                        heartList.add(dataResult.getString(15));
+                        activityMinList.add(dataResult.getString(16));
                     }   
                 }
                          
@@ -457,10 +495,15 @@ public class MainScreenController implements Initializable, TransitionController
             e.printStackTrace();
             return;
 	}
-       // Refreshes all of the scenes so that newly entered data will be reflected  
-       ScreensFramework.GlobalRefresh();
-       myController.setScreen(ScreensFramework.exportScreenID);
+        
+        // Refreshes all of the scenes so that newly entered data will be reflected <--- NOTE: Goes right before the screen transition
+        ScreensFramework.GlobalRefresh();
+        //myController.setScreen(ScreensFramework.reportScreenID);
+    }
+    
+    @FXML 
+    private void goToCaloriesScreen(ActionEvent event)
+    { 
+        myController.setScreen(ScreensFramework.caloriesScreenID);
     }
 }
-=======
->>>>>>> FETCH_HEAD

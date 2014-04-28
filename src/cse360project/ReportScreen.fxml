@@ -18,7 +18,7 @@
 <Font name="Segoe UI" size="72.0" />
 </font>
 </Label>
-<Button fx:id="ReportSaveButton" layoutX="27.0" layoutY="560.0" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Save" textFill="WHITE">
+<Button fx:id="ReportExportButton" layoutX="27.0" layoutY="560.0" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Export" textFill="WHITE">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>

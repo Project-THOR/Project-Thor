@@ -3,27 +3,17 @@ package cse360project;
 
 import java.lang.*;
 import java.net.URL;
-import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
+import javafx.scene.control.DatePicker;
 
-public class ReportScreenController implements Initializable, TransitionController 
+public class CaloriesScreenController implements Initializable, TransitionController 
 {
     ScreensController myController;
 
@@ -34,17 +24,20 @@ public class ReportScreenController implements Initializable, TransitionControll
     public static String driver             = "com.mysql.jdbc.Driver";
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
-    
-    public String numberOfSteps;
-    public String stepsDate;
-
+ 
     @FXML
-    private Button ReportSaveButton;
+    private Button CaloriesSaveButton;
     @FXML
-    private Button ReportCancelButton;
+    private Button CaloriesCancelButton;
+    @FXML
+    private TextField CaloriesTextField;
+    @FXML
+    private DatePicker CaloriesDatePicker;
     @FXML
     private Label UsernameDisplayLabel;
-  
+    @FXML
+    public LineChart<String, Number> CaloriesGraph;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -56,21 +49,14 @@ public class ReportScreenController implements Initializable, TransitionControll
     {
         myController = screenParent;
     }
-    @FXML
-    private void handleButtonAction(ActionEvent event) 
-    {
-        
-    }
     
     private void goToMainScreen()
     {
         myController.setScreen(ScreensFramework.mainScreenID);
     }
-    
     @FXML
     private void saveButtonPressed(ActionEvent event)
     {
-        ExportPDF.create(); 
         goToMainScreen();
     }
     

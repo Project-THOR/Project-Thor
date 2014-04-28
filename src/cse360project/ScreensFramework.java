@@ -25,8 +25,8 @@ public class ScreensFramework extends Application
     public static String bloodPressureScreenID      = "bloodPressureScreen";
     public static String bloodPressureScreenFile    = "BloodPressureScreen.fxml";
     
-    public static String exportScreenID             = "exportScreen";
-    public static String exportScreenFile           = "ExportScreen.fxml";
+    public static String caloriesScreenID           = "caloriesScreen";
+    public static String caloriesScreenFile         = "CaloriesScreen.fxml";
    
     public static String heartRateScreenID          = "heartRateScreen";
     public static String heartRateScreenFile        = "HeartRateScreen.fxml";
@@ -63,7 +63,7 @@ public class ScreensFramework extends Application
         mainContainer.loadScreen(ScreensFramework.stepScreenID,  ScreensFramework.stepScreenFile);
         mainContainer.loadScreen(ScreensFramework.bloodGlucoseScreenID, ScreensFramework.bloodGlucoseScreenFile);
         mainContainer.loadScreen(ScreensFramework.bloodPressureScreenID, ScreensFramework.bloodPressureScreenFile);
-        mainContainer.loadScreen(ScreensFramework.exportScreenID, ScreensFramework.exportScreenFile);
+        mainContainer.loadScreen(ScreensFramework.caloriesScreenID, ScreensFramework.caloriesScreenFile);
         mainContainer.loadScreen(ScreensFramework.heartRateScreenID, ScreensFramework.heartRateScreenFile);
         mainContainer.loadScreen(ScreensFramework.physicalActivityScreenID, ScreensFramework.physicalActivityScreenFile);
         mainContainer.loadScreen(ScreensFramework.profileScreenID, ScreensFramework.profileScreenFile);
@@ -84,6 +84,7 @@ public class ScreensFramework extends Application
         { 
             System.err.println("Cannot acquire stylesheet: " + ex.toString());
         }
+        primaryStage.setTitle("THOR - The Health Organizer");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -95,7 +96,7 @@ public class ScreensFramework extends Application
         mainContainer.unloadScreen(stepScreenID);
         mainContainer.unloadScreen(bloodGlucoseScreenID);
         mainContainer.unloadScreen(bloodPressureScreenID);
-        mainContainer.unloadScreen(exportScreenID);
+        mainContainer.unloadScreen(caloriesScreenID);
         mainContainer.unloadScreen(heartRateScreenID);
         mainContainer.unloadScreen(physicalActivityScreenID);
         mainContainer.unloadScreen(profileScreenID);
@@ -109,7 +110,7 @@ public class ScreensFramework extends Application
         mainContainer.loadScreen(ScreensFramework.stepScreenID,  ScreensFramework.stepScreenFile);
         mainContainer.loadScreen(ScreensFramework.bloodGlucoseScreenID, ScreensFramework.bloodGlucoseScreenFile);
         mainContainer.loadScreen(ScreensFramework.bloodPressureScreenID, ScreensFramework.bloodPressureScreenFile);
-        mainContainer.loadScreen(ScreensFramework.exportScreenID, ScreensFramework.exportScreenFile);
+        mainContainer.loadScreen(ScreensFramework.caloriesScreenID, ScreensFramework.caloriesScreenFile);
         mainContainer.loadScreen(ScreensFramework.heartRateScreenID, ScreensFramework.heartRateScreenFile);
         mainContainer.loadScreen(ScreensFramework.physicalActivityScreenID, ScreensFramework.physicalActivityScreenFile);
         mainContainer.loadScreen(ScreensFramework.profileScreenID, ScreensFramework.profileScreenFile);

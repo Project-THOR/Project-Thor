@@ -64,27 +64,27 @@
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button><Button fx:id="ProfileButton" layoutX="660.0" layoutY="117.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToProfileScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Profile" textFill="WHITE">
+</Button><Button fx:id="ProfileButton" layoutX="660.0" layoutY="248.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToProfileScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Profile" textFill="WHITE">
 <font>
 <Font name="Segoe UI" size="32.0" />
 </font>
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button><Button fx:id="ReportButton" layoutX="660.0" layoutY="248.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToReportScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Report" textFill="WHITE">
+</Button><Button fx:id="ReportButton" layoutX="660.0" layoutY="378.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToReportScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Report" textFill="WHITE">
 <font>
 <Font name="Segoe UI" size="32.0" />
 </font>
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button><Button fx:id="ExportButton" layoutX="660.0" layoutY="378.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToExportScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Export" textFill="WHITE">
-<font>
-<Font name="Segoe UI" size="32.0" />
-</font>
+</Button><Button fx:id="CaloriesButton" layoutX="660.0" layoutY="117.0" maxHeight="120.0" maxWidth="300.0" minHeight="120.0" minWidth="300.0" onAction="#goToCaloriesScreen" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Calories" textFill="WHITE">
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
+<font>
+<Font name="Segoe UI" size="32.0" />
+</font>
 </Button>
 </children>
 <padding>
