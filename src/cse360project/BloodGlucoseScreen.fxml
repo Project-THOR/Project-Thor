@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -32,6 +33,33 @@
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button>
+</Button><Label layoutX="64.0" layoutY="135.0" text="Glucose Level:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font></Label><Label layoutX="62.0" layoutY="186.0" text="Select Date:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font></Label><Label layoutX="64.0" layoutY="230.0" text="Select Time:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font></Label><TextArea fx:id="notes" layoutX="130.0" layoutY="275.0" prefHeight="110.0" prefWidth="200.0" /><Label layoutX="64.0" layoutY="275.0" text="Notes:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font></Label><TextField fx:id="glucoseLevel" layoutX="186.0" layoutY="129.0" prefHeight="35.0" prefWidth="88.0" promptText="Level" style="-fx-background-radius: 0;" /><TextField fx:id="time" layoutX="166.0" layoutY="224.0" prefHeight="35.0" prefWidth="64.0" promptText="HH:MM" style="-fx-background-radius: 0;" /><DatePicker fx:id="glucoseLevelDate" layoutX="166.0" layoutY="180.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="glucoseGraph" layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0">
+<xAxis>
+<CategoryAxis side="BOTTOM" style="-fx-tick-label-fill: #0070c0;" tickLabelFill="#0070c0">
+<tickLabelFont>
+<Font name="Segoe UI" size="12.0" />
+</tickLabelFont>
+</CategoryAxis>
+</xAxis>
+<yAxis>
+<NumberAxis autoRanging="false" minorTickCount="0" side="LEFT" tickLabelFill="#0070c0" tickUnit="50.0" upperBound="250.0">
+<tickLabelFont>
+<Font name="Segoe UI" size="12.0" />
+</tickLabelFont>
+</NumberAxis>
+</yAxis>
+</LineChart><RadioButton layoutX="245.0" layoutY="233.0" mnemonicParsing="false" text="AM" textFill="#0070c0" /><RadioButton layoutX="291.0" layoutY="233.0" mnemonicParsing="false" text="PM" textFill="#0070c0" />
 </children>
 </AnchorPane>

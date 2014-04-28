@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -32,6 +33,22 @@
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button>
+</Button><ChoiceBox fx:id="physicalActivityTypeChoiceBox" layoutX="246.0" layoutY="153.0" maxHeight="25.0" maxWidth="174.0" minHeight="25.0" minWidth="174.0" prefHeight="25.0" prefWidth="174.0" /><Label layoutX="32.0" layoutY="147.0" prefHeight="35.0" prefWidth="202.0" text="Physical Activity Type">
+<font>
+<Font size="20.0" />
+</font></Label><Label layoutX="169.0" layoutY="247.0" prefHeight="35.0" prefWidth="59.0" text="Date ">
+<font>
+<Font size="20.0" />
+</font></Label><DatePicker fx:id="physicalDatePicker" layoutX="246.0" layoutY="252.0" /><BarChart layoutX="468.0" layoutY="96.0">
+  <xAxis>
+    <CategoryAxis side="BOTTOM" />
+  </xAxis>
+  <yAxis>
+    <NumberAxis side="LEFT" />
+  </yAxis>
+</BarChart><TextField fx:id="minutesTextField" layoutX="246.0" layoutY="206.0" prefHeight="25.0" prefWidth="174.0" /><Label text="Label" /><Label layoutX="144.0" layoutY="201.0" prefHeight="35.0" prefWidth="84.0" text="Minutes ">
+<font>
+<Font size="20.0" />
+</font></Label>
 </children>
 </AnchorPane>

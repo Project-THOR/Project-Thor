@@ -1,6 +1,11 @@
 
 package cse360project;
 
+import static cse360project.StepsScreenController.databasePassword;
+import static cse360project.StepsScreenController.databaseUserName;
+import static cse360project.StepsScreenController.dbName;
+import static cse360project.StepsScreenController.url;
+import java.lang.*;
 import java.net.URL;
 import java.sql.*;
 import java.sql.Connection;
@@ -9,24 +14,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.DatePicker;
-import javafx.scene.Scene;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.ChoiceBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-
-
-public class StepsScreenController implements Initializable, TransitionController 
+public class NewUserScreenController implements Initializable, TransitionController 
 {
     ScreensController myController;
 
@@ -38,68 +42,42 @@ public class StepsScreenController implements Initializable, TransitionControlle
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
     
+    public String gender;
+    public String securityQuestion;
     public String numberOfSteps;
     public String stepsDate;
     
     @FXML
-    private Button StepsSaveButton;
+    private ChoiceBox genderBox;
     @FXML
-    private TextField NumberOfStepsField;
+    private ChoiceBox securityBox;
     @FXML
-    private Button StepsCancelButton;
+    private Button ProfileCreateButton;
+    @FXML
+    private Button ProfileCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
-    @FXML
-    private DatePicker StepsDatePicker;
-    @FXML
-    public LineChart<String, Number> StepsGraph;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        // Displays username in the top right corner of the scene
         UsernameDisplayLabel.setText(LoginScreenController.userName);
-        // Code that displays steps data on the chart
-        ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
-        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
-        series.setName("Steps");
- 
-        String tempDate;
-        int tempSteps;
-        // For some reason it won't let me use a for/foreach loop to add 
-        tempDate = MainScreenController.dateList.get(4);
-        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(4));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = MainScreenController.dateList.get(3);
-        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(3));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = MainScreenController.dateList.get(2);
-        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(2));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = MainScreenController.dateList.get(1);
-        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(1));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = MainScreenController.dateList.get(0);
-        tempSteps = Integer.parseInt(MainScreenController.stepsList.get(0));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        lineChartData.add(series);
-        
-        StepsGraph.setData(lineChartData);
-        StepsGraph.createSymbolsProperty();
+        genderBox.setItems(FXCollections.observableArrayList("Male","Female"));
+        securityBox.setItems(FXCollections.observableArrayList("Name of your first pet: ","Street you grew up on: ", "Favorite color: ", "Mother's maiden name:"));
     }  
-
+    
     @Override
     public void setScreenParent(ScreensController screenParent)
     {
         myController = screenParent;
     }
-      
-   @FXML 
+    @FXML
+    private void handleButtonAction(ActionEvent event) 
+    {
+        
+    }
+    
     private void goToMainScreen()
     {
         myController.setScreen(ScreensFramework.mainScreenID);
@@ -108,12 +86,9 @@ public class StepsScreenController implements Initializable, TransitionControlle
     @FXML
     private void saveButtonPressed(ActionEvent event)
     {
-        // Sets numberOfSteps variable equal to the value contained in the field
-        numberOfSteps = NumberOfStepsField.getText();
-        
-        // Sets stepsDate equal to the string value of the date object that was 
-        // selected in the date picker
-        stepsDate      = StepsDatePicker.getValue().toString();
+        //numberOfSteps = NumberOfStepsField.getText();
+        //stepsDate     = StepsDateEntryField.getText();
+        gender = genderBox.getValue().toString();
         
         try 
         {  
@@ -132,8 +107,6 @@ public class StepsScreenController implements Initializable, TransitionControlle
 	try 
         {
             // Makes connection to database
-            // --->NOTE:  Using the local user name variable instead of LoginScreenController.userName<---
-            // --->NOTE:  causes a database error so for now we can just use the LoginScreenController version of the variable<---
             connection = DriverManager.getConnection(url + dbName,databaseUserName, databasePassword);
             if (connection != null) 
             {
@@ -180,17 +153,7 @@ public class StepsScreenController implements Initializable, TransitionControlle
         // Refreshes all of the scenes so that newly entered data will be reflected  
         ScreensFramework.GlobalRefresh();
     }
-    public void showEntryError()
-    {
-        Stage newStage = new Stage();
-        VBox comp = new VBox();
-        Label loginError = new Label("Please Enter a Number");
-        comp.getChildren().add(loginError);
-        Scene stageScene = new Scene(comp, 300, 300);
-        newStage.setScene(stageScene);
-        newStage.show();
-    }
-
+    
     @FXML
     private void cancelButtonPressed(ActionEvent event)
     {
