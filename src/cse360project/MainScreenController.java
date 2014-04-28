@@ -35,6 +35,7 @@ public class MainScreenController implements Initializable, TransitionController
     public static List<String> bloodPressureList = new ArrayList<String>();
     public static List<String> dateList  = new ArrayList<String>();
     public static List<String> levelList = new ArrayList<String>();
+    public static List<String> activityList = new ArrayList<String>();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
