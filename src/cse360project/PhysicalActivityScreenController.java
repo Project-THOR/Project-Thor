@@ -14,14 +14,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+import javafx.scene.control.DatePicker;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class PhysicalActivityScreenController implements Initializable, TransitionController 
 {
@@ -35,8 +39,10 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
     
-    public String numberOfSteps;
-    public String stepsDate;
+    
+    public String physicalActivityType, physicalDate, minutes;
+    
+    
 
     @FXML
     private Button PhysicalActivitySaveButton;
@@ -44,11 +50,52 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
     private Button PhysicalActivityCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
+    @FXML
+    private Label PhysicalActivityTypeLabel, physicalDateLabel, minutesLabel;
+    @FXML
+    private DatePicker physicalDatePicker;
+    @FXML
+    public BarChart<String, Number> PhysicalActivityGraph;
+    @FXML
+    private ChoiceBox physicalActivityTypeChoiceBox;
+    @FXML
+    private TextField minutesTextField;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         UsernameDisplayLabel.setText(LoginScreenController.userName);
+        physicalActivityTypeChoiceBox.setItems(FXCollections.observableArrayList("First","second"));   
+        // Code that displays steps data on the chart
+        ObservableList<XYChart.Series<String, Number>> BarChartData = FXCollections.observableArrayList();
+        BarChart.Series<String, Number> series = new BarChart.Series<String, Number>();
+        series.setName("First");
+        // For some reason it won't let me use a for/foreach loop to add 
+        String tempDate = MainScreenController.dateList.get(0);
+        int tempActivity = Integer.parseInt(MainScreenController.activityList.get(0));
+        series.getData().add(new XYChart.Data(tempDate, tempActivity));
+        
+        tempDate = MainScreenController.dateList.get(1);
+        tempActivity = Integer.parseInt(MainScreenController.activityList.get(1));
+        series.getData().add(new XYChart.Data(tempDate, tempActivity));
+        
+        tempDate = MainScreenController.dateList.get(2);
+        tempActivity = Integer.parseInt(MainScreenController.stepsList.get(2));
+        series.getData().add(new XYChart.Data(tempDate, tempActivity));
+        
+        tempDate = MainScreenController.dateList.get(3);
+        tempActivity = Integer.parseInt(MainScreenController.stepsList.get(3));
+        series.getData().add(new XYChart.Data(tempDate, tempActivity));
+        tempDate = MainScreenController.dateList.get(4);
+        tempActivity = Integer.parseInt(MainScreenController.stepsList.get(4));
+        series.getData().add(new XYChart.Data(tempDate, tempActivity));
+        
+        BarChartData.add(series);
+        
+        PhysicalActivityGraph.setData(BarChartData);
+        //PhysicalActivityGraph.createSymbolsProperty();
+    
     }  
     
     @Override
@@ -57,10 +104,10 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
         myController = screenParent;
     }
     @FXML
-    private void handleButtonAction(ActionEvent event) 
+    /*private void handleButtonAction(ActionEvent event) 
     {
         
-    }
+    }*/
     
     
     private void goToMainScreen()
@@ -71,9 +118,12 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
     @FXML
     private void saveButtonPressed(ActionEvent event)
     {
-        //numberOfSteps = NumberOfStepsField.getText();
-        //stepsDate     = StepsDateEntryField.getText();
-        
+       
+       physicalActivityType =  physicalActivityTypeChoiceBox.getValue().toString();
+       physicalDate     = physicalDatePicker.getValue().toString();
+       minutes = minutesTextField.getText();
+       
+       
         try 
         {  
             Class.forName("com.mysql.jdbc.Driver");
@@ -95,28 +145,32 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
             if (connection != null) 
             {
                 // Checks to see if there is already an entry in the database for the user on the spcified date
-                String stepsQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + stepsDate + "'";
-                PreparedStatement checkStatement = connection.prepareStatement(stepsQuery);
+                String activityQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + physicalDate + "'";
+                PreparedStatement checkStatement = connection.prepareStatement(activityQuery);
                 ResultSet result = checkStatement.executeQuery();
                 // If there is already an entry for that date, the UPDATE statement is used so that it will just update the exiting entry for that 
                 // date instead of creating a whole new entry with the same date.  --->NOTE: Spaces are important <----
                 if(result.next())
                 {
-                    String stepsUpdate = "UPDATE mydb.userData SET steps = '" + numberOfSteps +"' WHERE user_name = '" + 
-                                                                                LoginScreenController.userName + "' AND date = '" + stepsDate + "'"; 
+                    String physicalUpdate = "UPDATE mydb.userData SET activity = '" + physicalActivityType +"' WHERE user_name = '" + 
+                                                                                LoginScreenController.userName + "' AND date = '" + physicalDate + "'";
+                    String physicalUpdate1 = "UPDATE mydb.userData SET activityMin = '" + minutes +"' WHERE user_name = '" + 
+                                                                                LoginScreenController.userName + "' AND date = '" + physicalDate + "'";
+                    
                     Statement updateStatement = connection.createStatement();
-                    updateStatement.executeUpdate(stepsUpdate);
+                    updateStatement.executeUpdate(physicalUpdate);
+                    updateStatement.executeUpdate(physicalUpdate1);
                     goToMainScreen();
                     connection.close();
                 }
                 // If there is not an entry already in the database for the specified date, the INSERT statement is used to create a new entry in the database.
                 else
                 {
-                    String stepsInsert = "INSERT INTO mydb.userData (user_name, date, steps ) VALUES (\""+ LoginScreenController.userName+ "\",\"" + 
-                                                                                                           stepsDate + "\", \"" + numberOfSteps +"\")";
+                    String physicalInsert = "INSERT INTO mydb.userData (user_name, date, activity, activityMin ) VALUES (\""+ LoginScreenController.userName+ "\",\"" + 
+                                                                                                           physicalDate + "\", \"" + physicalActivityType +"\",\"" + minutes+"\")";
                     Statement insertStatement = connection.createStatement();
                     // Executes the statement and writes to the datebase.
-                    insertStatement.executeUpdate(stepsInsert);
+                    insertStatement.executeUpdate(physicalInsert);
                     // Returns to the main screen 
                     goToMainScreen();
                     // Closes the connection to the database.
