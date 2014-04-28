@@ -30,6 +30,8 @@ public class MainScreenController implements Initializable, TransitionController
     public static String databasePassword   = "FitnessTeam#360";
     
     public static List<String> stepsList = new ArrayList<String>();
+    public static List<String> sleepList = new ArrayList<String>();
+    public static List<String> bloodPressureList = new ArrayList<String>();
     public static List<String> dateList  = new ArrayList<String>();
     public static List<String> levelList = new ArrayList<String>();
     

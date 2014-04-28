@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,11 +50,45 @@ public class SleepScreenController implements Initializable, TransitionControlle
     private Label UsernameDisplayLabel;
     @FXML
     private DatePicker SleepDatePicker;
+    @FXML
+    public LineChart<String, Number> SleepGraph;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         UsernameDisplayLabel.setText(LoginScreenController.userName);
+        
+        ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
+        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
+        series.setName("Hours");
+ 
+        String tempDate;
+        int tempHours;
+        // For some reason it won't let me use a for/foreach loop to add 
+        tempDate = MainScreenController.dateList.get(4);
+        tempHours = Integer.parseInt(MainScreenController.sleepList.get(4));
+        series.getData().add(new XYChart.Data(tempDate, tempHours));
+        
+        tempDate = MainScreenController.dateList.get(3);
+        tempHours = Integer.parseInt(MainScreenController.sleepList.get(3));
+        series.getData().add(new XYChart.Data(tempDate, tempHours));
+        
+        tempDate = MainScreenController.dateList.get(2);
+        tempHours = Integer.parseInt(MainScreenController.sleepList.get(2));
+        series.getData().add(new XYChart.Data(tempDate, tempHours));
+        
+        tempDate = MainScreenController.dateList.get(1);
+        tempHours = Integer.parseInt(MainScreenController.sleepList.get(1));
+        series.getData().add(new XYChart.Data(tempDate, tempHours));
+        
+        tempDate = MainScreenController.dateList.get(0);
+        tempHours = Integer.parseInt(MainScreenController.sleepList.get(0));
+        series.getData().add(new XYChart.Data(tempDate, tempHours));
+        
+        lineChartData.add(series);
+        
+        SleepGraph.setData(lineChartData);
+        SleepGraph.createSymbolsProperty();
     }  
     
     @Override

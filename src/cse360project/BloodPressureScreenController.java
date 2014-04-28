@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,11 +55,51 @@ public class BloodPressureScreenController implements Initializable, TransitionC
     private Label UsernameDisplayLabel;
     @FXML
     private DatePicker bloodPressureDatePicker;
+    @FXML
+    public LineChart<String, Number> BloodPressureGraph;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         UsernameDisplayLabel.setText(LoginScreenController.userName);
+        
+        ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
+        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
+        series.setName("Blood Pressure");
+ 
+        String tempDate;
+        String[] tempBPVals;
+        int tempBloodPressure;
+        // For some reason it won't let me use a for/foreach loop to add 
+        tempDate = MainScreenController.dateList.get(4);
+        tempBPVals = MainScreenController.bloodPressureList.get(4).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        tempDate = MainScreenController.dateList.get(3);
+        tempBPVals = MainScreenController.bloodPressureList.get(3).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        tempDate = MainScreenController.dateList.get(2);
+        tempBPVals = MainScreenController.bloodPressureList.get(2).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        tempDate = MainScreenController.dateList.get(1);
+        tempBPVals = MainScreenController.bloodPressureList.get(1).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        tempDate = MainScreenController.dateList.get(0);
+        tempBPVals = MainScreenController.bloodPressureList.get(0).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        lineChartData.add(series);
+        
+        BloodPressureGraph.setData(lineChartData);
+        BloodPressureGraph.createSymbolsProperty();
     }  
     
     @Override
