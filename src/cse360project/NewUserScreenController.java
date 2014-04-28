@@ -62,6 +62,8 @@ public class NewUserScreenController implements Initializable, TransitionControl
     @FXML
     private TextField answerField;
     @FXML
+    private TextField birthDateField;
+    @FXML
     private ChoiceBox genderBox;
     @FXML
     private ChoiceBox securityBox;
@@ -105,15 +107,14 @@ public class NewUserScreenController implements Initializable, TransitionControl
     {
         //numberOfSteps = NumberOfStepsField.getText();
         //stepsDate     = StepsDateEntryField.getText();
-        userName = userNameField.getValue().toString();
-        password = passwordField.getValue().toString();
-        email = emailField.getValue().toString();
-        birthdate = emailField.getValue().toString();
-        answer = answerField.getValue().toString();
+        userName = userNameField.getText();
+        password = passwordField.getText();
+        email = emailField.getText();
+        birthdate = birthDateField.getText();
         gender = genderBox.getValue().toString();
         securityQuestion = securityBox.getValue().toString();
+        answer = answerField.getText();
         
-       
         try 
         {  
             Class.forName("com.mysql.jdbc.Driver");

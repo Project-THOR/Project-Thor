@@ -48,9 +48,9 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     public String securityQuestion;
 
     @FXML
-    private Button ProfileSaveButton;
+    private Button submitButtonPressed;
     @FXML
-    private Button ProfileCancelButton;
+    private Button cancelButtonPressed;
     @FXML
     private Label UsernameDisplayLabel;
     @FXML
@@ -84,7 +84,7 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     }
     
     @FXML
-    private void saveButtonPressed(ActionEvent event)
+    private void submitButtonPressed(ActionEvent event)
     {
         //numberOfSteps = NumberOfStepsField.getText();
         //stepsDate     = StepsDateEntryField.getText();

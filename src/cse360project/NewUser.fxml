@@ -18,7 +18,7 @@
 <Font name="Segoe UI" size="72.0" />
 </font>
 </Label>
-<Button fx:id="ProfileSaveButton" layoutX="27.0" layoutY="560.0" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Create Account" textFill="WHITE">
+<Button fx:id="ProfileCreateButton" layoutX="27.0" layoutY="560.0" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Create Account" textFill="WHITE">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
@@ -40,11 +40,11 @@
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField layoutX="185.0" layoutY="277.0" prefHeight="35.0" prefWidth="223.0" style="-fx-background-radius: 0;" /><TextField layoutX="185.0" layoutY="234.0" prefHeight="35.0" prefWidth="223.0" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="240.0" text="Create Password:" textFill="#0070c0">
+</Label><Label layoutX="34.0" layoutY="240.0" text="Create Password:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField layoutX="118.0" layoutY="323.0" prefHeight="35.0" prefWidth="113.0" promptText="MM/DD/YYYY" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="329.0" text="Birthdate:" textFill="#0070c0">
+</Label><TextField fx:id="birthDateField" layoutX="118.0" layoutY="323.0" prefHeight="35.0" prefWidth="113.0" promptText="MM/DD/YYYY" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="329.0" text="Birthdate:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
@@ -56,7 +56,7 @@
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField layoutX="92.0" layoutY="187.0" prefHeight="35.0" prefWidth="206.0" promptText="Thor1234@email.com" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="193.0" text="Email:" textFill="#0070c0">
+</Label><TextField fx:id="emailField" layoutX="92.0" layoutY="187.0" prefHeight="35.0" prefWidth="206.0" promptText="Thor1234@email.com" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="193.0" text="Email:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
@@ -80,6 +80,6 @@
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField layoutX="111.0" layoutY="447.0" prefHeight="35.0" prefWidth="275.0" style="-fx-background-radius: 0;" />
+</Label><TextField fx:id="answerField" layoutX="111.0" layoutY="447.0" prefHeight="35.0" prefWidth="275.0" style="-fx-background-radius: 0;" /><PasswordField layoutX="186.0" layoutY="239.0" /><PasswordField layoutX="186.0" layoutY="282.0" />
 </children>
 </AnchorPane>
