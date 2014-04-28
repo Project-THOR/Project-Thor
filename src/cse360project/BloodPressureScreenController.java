@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,13 +23,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
 public class BloodPressureScreenController implements Initializable, TransitionController 
 {
     ScreensController myController;
 
-    public static String stepsUserName      = LoginScreenController.userName;
+    public static String bloodPressureUserName      = LoginScreenController.userName;
     public static String password           = LoginScreenController.password;
     public static String url                = "jdbc:mysql://168.62.213.183:3306/";
     public static String dbName             = "mydb";
@@ -35,21 +38,68 @@ public class BloodPressureScreenController implements Initializable, TransitionC
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
     
-    public String numberOfSteps;
-    public String stepsDate;
+    public String numberSystolic;
+    public String numberDiastolic;
+    public String numberAsRead;
+    public String bloodPressureDate;
 
     @FXML
-    private Button BloodPressureSaveButton;
+    private Button bloodPressureSaveButton;
     @FXML
-    private Button BloodPressureCancelButton;
+    private TextField diastolicField;
+    @FXML
+    private TextField systolicField;
+    @FXML
+    private Button bloodPressureCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
-    
+    @FXML
+    private DatePicker bloodPressureDatePicker;
+    @FXML
+    public LineChart<String, Number> BloodPressureGraph;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         UsernameDisplayLabel.setText(LoginScreenController.userName);
+        
+        ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
+        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
+        series.setName("Blood Pressure");
+ 
+        String tempDate;
+        String[] tempBPVals;
+        int tempBloodPressure;
+        // For some reason it won't let me use a for/foreach loop to add 
+        tempDate = MainScreenController.dateList.get(4);
+        tempBPVals = MainScreenController.bloodPressureList.get(4).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        tempDate = MainScreenController.dateList.get(3);
+        tempBPVals = MainScreenController.bloodPressureList.get(3).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        tempDate = MainScreenController.dateList.get(2);
+        tempBPVals = MainScreenController.bloodPressureList.get(2).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        tempDate = MainScreenController.dateList.get(1);
+        tempBPVals = MainScreenController.bloodPressureList.get(1).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        tempDate = MainScreenController.dateList.get(0);
+        tempBPVals = MainScreenController.bloodPressureList.get(0).split("/");
+        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
+        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        
+        lineChartData.add(series);
+        
+        BloodPressureGraph.setData(lineChartData);
+        BloodPressureGraph.createSymbolsProperty();
     }  
     
     @Override
@@ -72,8 +122,10 @@ public class BloodPressureScreenController implements Initializable, TransitionC
     @FXML
     private void saveButtonPressed(ActionEvent event)
     {
-        //numberOfSteps = NumberOfStepsField.getText();
-        //stepsDate     = StepsDateEntryField.getText();
+        numberDiastolic = diastolicField.getText();
+        numberSystolic = systolicField.getText();
+        numberAsRead = numberSystolic + "/" + numberDiastolic;
+        bloodPressureDate = bloodPressureDatePicker.getValue().toString();
         
         try 
         {  
@@ -96,28 +148,28 @@ public class BloodPressureScreenController implements Initializable, TransitionC
             if (connection != null) 
             {
                 // Checks to see if there is already an entry in the database for the user on the spcified date
-                String stepsQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + stepsDate + "'";
-                PreparedStatement checkStatement = connection.prepareStatement(stepsQuery);
+                String bloodPressureQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + bloodPressureDate + "'";
+                PreparedStatement checkStatement = connection.prepareStatement(bloodPressureQuery);
                 ResultSet result = checkStatement.executeQuery();
                 // If there is already an entry for that date, the UPDATE statement is used so that it will just update the exiting entry for that 
                 // date instead of creating a whole new entry with the same date.  --->NOTE: Spaces are important <----
                 if(result.next())
                 {
-                    String stepsUpdate = "UPDATE mydb.userData SET steps = '" + numberOfSteps +"' WHERE user_name = '" + 
-                                                                                LoginScreenController.userName + "' AND date = '" + stepsDate + "'"; 
+                    String bloodPressureUpdate = "UPDATE mydb.userData SET bloodPressure = '" + numberAsRead +"' WHERE user_name = '" + 
+                                                                                LoginScreenController.userName + "' AND date = '" + bloodPressureDate + "'"; 
                     Statement updateStatement = connection.createStatement();
-                    updateStatement.executeUpdate(stepsUpdate);
+                    updateStatement.executeUpdate(bloodPressureUpdate);
                     goToMainScreen();
                     connection.close();
                 }
                 // If there is not an entry already in the database for the specified date, the INSERT statement is used to create a new entry in the database.
                 else
                 {
-                    String stepsInsert = "INSERT INTO mydb.userData (user_name, date, steps ) VALUES (\""+ LoginScreenController.userName+ "\",\"" + 
-                                                                                                           stepsDate + "\", \"" + numberOfSteps +"\")";
+                    String bloodPressureInsert = "INSERT INTO mydb.userData (user_name, date, bloodPressure ) VALUES (\""+ LoginScreenController.userName+ "\",\"" + 
+                                                                                                           bloodPressureDate + "\", \"" + numberAsRead +"\")";
                     Statement insertStatement = connection.createStatement();
                     // Executes the statement and writes to the datebase.
-                    insertStatement.executeUpdate(stepsInsert);
+                    insertStatement.executeUpdate(bloodPressureInsert);
                     // Returns to the main screen 
                     goToMainScreen();
                     // Closes the connection to the database.

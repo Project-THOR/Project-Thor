@@ -32,30 +32,54 @@
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button><Label layoutX="34.0" layoutY="146.0" text="Name:" textFill="#0070c0">
+</Button><Label layoutX="34.0" layoutY="146.0" text="Username:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField layoutX="100.0" layoutY="140.0" prefHeight="35.0" prefWidth="148.0" promptText="First" style="-fx-background-radius: 0;" /><TextField layoutX="277.0" layoutY="140.0" prefHeight="35.0" prefWidth="148.0" promptText="Last" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="240.0" text="Reenter Password:" textFill="#0070c0">
+</Label><TextField layoutX="128.0" layoutY="140.0" prefHeight="35.0" prefWidth="148.0" promptText="ThorUser1234" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="283.0" text="Reenter Password:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField layoutX="185.0" layoutY="234.0" prefHeight="35.0" prefWidth="223.0" style="-fx-background-radius: 0;" /><TextField layoutX="185.0" layoutY="191.0" prefHeight="35.0" prefWidth="223.0" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="197.0" text="Create Password:" textFill="#0070c0">
+</Label><TextField layoutX="185.0" layoutY="277.0" prefHeight="35.0" prefWidth="223.0" style="-fx-background-radius: 0;" /><TextField layoutX="185.0" layoutY="234.0" prefHeight="35.0" prefWidth="223.0" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="240.0" text="Create Password:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField layoutX="118.0" layoutY="280.0" prefHeight="35.0" prefWidth="113.0" promptText="MM/DD/YYYY" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="286.0" text="Birthdate:" textFill="#0070c0">
+</Label><TextField layoutX="118.0" layoutY="323.0" prefHeight="35.0" prefWidth="113.0" promptText="MM/DD/YYYY" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="329.0" text="Birthdate:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><Label layoutX="34.0" layoutY="330.0" text="Gender:" textFill="#0070c0">
+</Label><Label layoutX="34.0" layoutY="373.0" text="Gender:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><ChoiceBox fx:id="genderBox" layoutX="105.0" layoutY="329.0" prefWidth="150.0" /><ChoiceBox layoutX="195.0" layoutY="365.0" prefHeight="25.0" prefWidth="390.0" /><Label layoutX="34.0" layoutY="366.0" text="Security Question:" textFill="#0070c0">
+</Label><ChoiceBox fx:id="genderBox" layoutX="110.0" layoutY="372.0" prefWidth="150.0" /><ChoiceBox fx:id="securityBox" layoutX="195.0" layoutY="408.0" prefHeight="25.0" prefWidth="390.0" /><Label layoutX="34.0" layoutY="409.0" text="Security Question:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label>
+</Label><TextField layoutX="92.0" layoutY="187.0" prefHeight="35.0" prefWidth="206.0" promptText="Thor1234@email.com" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="193.0" text="Email:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
+</Label><Label layoutX="415.0" layoutY="227.0" text="Password Rules:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="12.0" />
+</font>
+</Label><Label layoutX="429.0" layoutY="242.0" text="*length must be 7 characters or greater" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="12.0" />
+</font>
+</Label><Label layoutX="429.0" layoutY="253.0" text="*must contain at least one number " textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="12.0" />
+</font>
+</Label><Label layoutX="429.0" layoutY="265.0" text="*must contain at least one uppercase letter" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="12.0" />
+</font>
+</Label><Label layoutX="34.0" layoutY="453.0" text="Answer:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
+</Label><TextField layoutX="111.0" layoutY="447.0" prefHeight="35.0" prefWidth="275.0" style="-fx-background-radius: 0;" />
 </children>
 </AnchorPane>
