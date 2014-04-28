@@ -26,6 +26,10 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+import javafx.scene.control.ChoiceBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Separator;
 
 public class ForgotPasswordScreenController implements Initializable, TransitionController 
 {
@@ -41,6 +45,7 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     
     public String numberOfSteps;
     public String stepsDate;
+    public String securityQuestion;
 
     @FXML
     private Button ProfileSaveButton;
@@ -48,12 +53,17 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     private Button ProfileCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
+    @FXML
+    private ChoiceBox securityBox;
     
+    ChoiceBox cb = new ChoiceBox();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         UsernameDisplayLabel.setText(LoginScreenController.userName);
+        securityBox = new ChoiceBox();
+        securityBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Name of your first pet: ","Street you grew up on: ", "Mother's maiden name:","Name of first teacher: ", "Childhood nickname: ","City or town of first job: "));
     }  
     
     @Override
