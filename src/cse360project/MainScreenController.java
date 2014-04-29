@@ -295,8 +295,7 @@ public class MainScreenController implements Initializable, TransitionController
                             stepsList.add(dataResult.getString(14));
                         } 
                     }   
-                }
-                         
+                }        
                 else
                 {
                     showLoginError();
@@ -391,11 +390,87 @@ public class MainScreenController implements Initializable, TransitionController
     @FXML 
     private void goToProfileScreen(ActionEvent event)
     {
+        weightList.clear();
+        heightList.clear();
+        BMIList.clear();
+        heartList.clear();
+        
+        try 
+        {  
+            Class.forName("com.mysql.jdbc.Driver");
+	} 
+        catch (ClassNotFoundException e) 
+        {
+            System.out.println("Where is your MySQL JDBC Driver?");
+            System.out.println("Failed stage 1");
+            return;
+	}
+ 
+	System.out.println("MySQL JDBC Driver Registered!");
+	Connection connection = null;
+ 
+	try 
+        {
+            connection = DriverManager.getConnection(url + dbName,databaseUserName, databasePassword);
+            if (connection != null) 
+            {
+                // mySQL Query: SELECT * FROM(SELECT * FROM mydb.userdata WHERE user_name = 'TestUser' ORDER BY date DESC LIMIT 5) sub ORDER BY date ASC;
+                // It selects the userdata of the user that is logged in and gets the 5 latest (DESC) entries by date and then sorts so we get the dates
+                // in order of Earliest date to the most recent date
+                String graphQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +  "' ORDER BY date DESC";
+                PreparedStatement dataStatement = connection.prepareStatement(graphQuery);
+                ResultSet dataResult = dataStatement.executeQuery();
+                if(dataResult.next())
+                {
+                    while(dataResult.next())
+                    {
+                        //  Adds all of the non-null entries for Blood Glucose to the list
+                         if(dataResult.getString(4) != null)
+                         {
+                            weightList.add(dataResult.getString(4));
+                            
+                         }
+                         if(dataResult.getString(5) != null)
+                         {
+                            heightList.add(dataResult.getString(5));
+                            
+                         }
+                         if(dataResult.getString(6) != null )
+                         {
+                            BMIList.add(dataResult.getString(6));
+                            
+                         }
+                         if(dataResult.getString(15) != null)
+                         {
+                            heartList.add(dataResult.getString(15));
+                         }
+                    }   
+                }
+                         
+                else
+                {
+                    showLoginError();
+                }
+              connection.close();  
+            }
+            else 
+            {
+                System.out.println("Failed to make connection!");
+            }
+	} 
+        catch (SQLException e) 
+        {
+            System.out.println("Connection Failed! Check output console");
+            System.out.println("Failed stage 3");
+            e.printStackTrace();
+            return;
+	} 
+        
         // Refreshes all of the scenes so that newly entered data will be reflected <--- NOTE: Goes right before the screen transition
         ScreensFramework.GlobalRefresh();
         myController.setScreen(ScreensFramework.profileScreenID);
     }
-    
+        
     @FXML 
     private void goToReportScreen(ActionEvent event)
     {

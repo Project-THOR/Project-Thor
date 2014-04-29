@@ -1,10 +1,6 @@
 
 package cse360project;
 
-import static cse360project.StepsScreenController.databasePassword;
-import static cse360project.StepsScreenController.databaseUserName;
-import static cse360project.StepsScreenController.dbName;
-import static cse360project.StepsScreenController.url;
 import java.lang.*;
 import java.net.URL;
 import java.sql.*;
@@ -17,15 +13,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
 
 public class ProfileScreenController implements Initializable, TransitionController 
 {
@@ -39,8 +29,19 @@ public class ProfileScreenController implements Initializable, TransitionControl
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
     
-    public String numberOfSteps;
-    public String stepsDate;
+    public String date;
+    public String height;
+    public String weight;
+    public String feet;
+    public String inches;
+    public String bmi;
+    public String restingPulse;
+    
+    private TextField weightField;
+    private TextField feetField;
+    private TextField inchesField;
+    private TextField bmiField;
+    private TextField restingPulseField;
 
     @FXML
     private Button ProfileSaveButton;
@@ -61,13 +62,13 @@ public class ProfileScreenController implements Initializable, TransitionControl
     {
         myController = screenParent;
     }
+    
     @FXML
     private void handleButtonAction(ActionEvent event) 
     {
         
     }
-    
-    
+
     private void goToMainScreen()
     {
         myController.setScreen(ScreensFramework.mainScreenID);
@@ -76,8 +77,10 @@ public class ProfileScreenController implements Initializable, TransitionControl
     @FXML
     private void saveButtonPressed(ActionEvent event)
     {
-        //numberOfSteps = NumberOfStepsField.getText();
-        //stepsDate     = StepsDateEntryField.getText();
+        weight       = weightField.getText();
+        feet         = feetField.getText();
+        inches       = inchesField.getText();
+        restingPulse = restingPulseField.getText();
         
         try 
         {  
@@ -100,30 +103,53 @@ public class ProfileScreenController implements Initializable, TransitionControl
             if (connection != null) 
             {
                 // Checks to see if there is already an entry in the database for the user on the spcified date
-                String stepsQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + stepsDate + "'";
+                String stepsQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + date + "'";
                 PreparedStatement checkStatement = connection.prepareStatement(stepsQuery);
                 ResultSet result = checkStatement.executeQuery();
                 // If there is already an entry for that date, the UPDATE statement is used so that it will just update the exiting entry for that 
                 // date instead of creating a whole new entry with the same date.  --->NOTE: Spaces are important <----
                 if(result.next())
                 {
-                    String stepsUpdate = "UPDATE mydb.userData SET steps = '" + numberOfSteps +"' WHERE user_name = '" + 
-                                                                                LoginScreenController.userName + "' AND date = '" + stepsDate + "'"; 
+                    /* Here we used the same variables (profileUpdate and updateStatement) since it will be overwritten in java, but we have correctly
+                    used a different variable when we use SET (for example all the lines are the same, but after 'SET' we have weight and height and bmi)*/
+                    String profileUpdate = "UPDATE mydb.userData SET weight = '" + weight +"' WHERE user_name = '" + 
+                                                                                LoginScreenController.userName + "' AND date = '" + date + "'"; 
+                    
                     Statement updateStatement = connection.createStatement();
-                    updateStatement.executeUpdate(stepsUpdate);
-                    goToMainScreen();
+                    updateStatement.executeUpdate(profileUpdate);
+                    
+                    profileUpdate = "UPDATE mydb.userData SET height = '" + height +"' WHERE user_name = '" + 
+                                                                                LoginScreenController.userName + "' AND date = '" + date + "'"; 
+                    
+                    updateStatement = connection.createStatement();
+                    updateStatement.executeUpdate(profileUpdate);
+                    
+                    profileUpdate = "UPDATE mydb.userData SET bmi = '" + bmi +"' WHERE user_name = '" + 
+                                                                                LoginScreenController.userName + "' AND date = '" + date + "'"; 
+                    
+                    updateStatement = connection.createStatement();
+                    updateStatement.executeUpdate(profileUpdate);
+                    
+                    profileUpdate = "UPDATE mydb.userData SET restingPulse = '" + restingPulse +"' WHERE user_name = '" + 
+                                                                                LoginScreenController.userName + "' AND date = '" + date + "'"; 
+                    
+                    updateStatement = connection.createStatement();
+                    updateStatement.executeUpdate(profileUpdate);
+                    
+                    myController.setScreen(ScreensFramework.mainScreenID);
                     connection.close();
                 }
                 // If there is not an entry already in the database for the specified date, the INSERT statement is used to create a new entry in the database.
                 else
                 {
-                    String stepsInsert = "INSERT INTO mydb.userData (user_name, date, steps ) VALUES (\""+ LoginScreenController.userName+ "\",\"" + 
-                                                                                                           stepsDate + "\", \"" + numberOfSteps +"\")";
+                    String profileInsert = "INSERT INTO mydb.userData (user_name, date, weight, height, bmi, restingPulse ) VALUES "
+                            + "(\""+ LoginScreenController.userName+ "\",\"" + 
+                            date + "\", \"" + weight +"\", \"" + height +"\", \"" + bmi +"\", \"" + restingPulse +"\")";
                     Statement insertStatement = connection.createStatement();
                     // Executes the statement and writes to the datebase.
-                    insertStatement.executeUpdate(stepsInsert);
+                    insertStatement.executeUpdate(profileInsert);
                     // Returns to the main screen 
-                    goToMainScreen();
+                    myController.setScreen(ScreensFramework.mainScreenID);
                     // Closes the connection to the database.
                     connection.close();
                 }
@@ -146,6 +172,6 @@ public class ProfileScreenController implements Initializable, TransitionControl
     @FXML
     private void cancelButtonPressed(ActionEvent event)
     {
-        goToMainScreen();
+        myController.setScreen(ScreensFramework.mainScreenID);
     }
 }
