@@ -67,7 +67,7 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        UsernameDisplayLabel.setText(LoginScreenController.userName);
+        UsernameDisplayLabel.setText(LoginScreenController.userName);     
         physicalActivityTypeChoiceBox.setItems(FXCollections.observableArrayList("Cardio","Strength Training"));   
         // Code that displays activies data on the chart
         ObservableList<XYChart.Series<String, Number>> BarChartData = FXCollections.observableArrayList();

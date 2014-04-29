@@ -49,7 +49,7 @@ public class ScreensFramework extends Application
     public static String forgotPasswordScreenID     = "forgotPasswordScreen";
     public static String forgotPasswordScreenFile   = "ForgotPasswordScreen.fxml";
  
-    public static ScreensController mainContainer = new ScreensController();
+    public static ScreensController mainContainer   = new ScreensController();
    
     @Override
     //  This is what passes for "main" in this case.  It essentially sets up all
