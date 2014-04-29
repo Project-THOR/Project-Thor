@@ -1602,7 +1602,6 @@ public class ExportPDF
                         {
                            dateList.add(dataResult.getString(3));
                            pressureList.add(dataResult.getString(11));
-                           System.out.println("LAME");
                         }        
                     }   
                 }

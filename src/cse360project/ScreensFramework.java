@@ -43,11 +43,11 @@ public class ScreensFramework extends Application
     public static String sleepScreenID              = "sleepScreen";
     public static String sleepScreenFile            = "SleepScreen.fxml";
     
-    public static String newAccountScreenID         = "newAccount";
-    public static String newAccountScreenFile       = "NewAccountScreen.fxml";
+    public static String newAccountScreenID         = "newAccountScreen";
+    public static String newAccountScreenFile       = "NewUser.fxml";
             
     public static String forgotPasswordScreenID     = "forgotPasswordScreen";
-    public static String forgotPasswordScreenFile   = "ForgotPasswordScreen.fxml";
+    public static String forgotPasswordScreenFile   = "ForgotPassword.fxml";
  
     public static ScreensController mainContainer   = new ScreensController();
    
