@@ -1,7 +1,6 @@
 
 package cse360project;
 
-
 import java.net.URL;
 import java.sql.*;
 import java.sql.Connection;
@@ -15,16 +14,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class SleepScreenController implements Initializable, TransitionController 
 {
@@ -102,7 +97,6 @@ public class SleepScreenController implements Initializable, TransitionControlle
     {
         
     }
-    
     
     private void goToMainScreen()
     {

@@ -64,39 +64,53 @@ public class BloodPressureScreenController implements Initializable, TransitionC
         UsernameDisplayLabel.setText(LoginScreenController.userName);
         
         ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
-        LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
-        series.setName("Blood Pressure");
+        LineChart.Series<String, Number> seriesSys = new LineChart.Series<String, Number>();
+        LineChart.Series<String, Number> seriesDia = new LineChart.Series<String, Number>();
+        seriesSys.setName("Systolic");
+        seriesDia.setName("Diastolic");
  
         String tempDate;
         String[] tempBPVals;
-        int tempBloodPressure;
+        int tempSystolic;
+        int tempDiastolic;
+
         // For some reason it won't let me use a for/foreach loop to add 
         tempDate = MainScreenController.dateList.get(4);
         tempBPVals = MainScreenController.bloodPressureList.get(4).split("/");
-        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
-        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
         
         tempDate = MainScreenController.dateList.get(3);
         tempBPVals = MainScreenController.bloodPressureList.get(3).split("/");
-        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
-        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
         
         tempDate = MainScreenController.dateList.get(2);
         tempBPVals = MainScreenController.bloodPressureList.get(2).split("/");
-        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
-        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
         
         tempDate = MainScreenController.dateList.get(1);
         tempBPVals = MainScreenController.bloodPressureList.get(1).split("/");
-        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
-        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
         
         tempDate = MainScreenController.dateList.get(0);
         tempBPVals = MainScreenController.bloodPressureList.get(0).split("/");
-        tempBloodPressure = Integer.parseInt(tempBPVals[0])/Integer.parseInt(tempBPVals[1]);
-        series.getData().add(new XYChart.Data(tempDate, tempBloodPressure));
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
         
-        lineChartData.add(series);
+        lineChartData.addAll(seriesSys, seriesDia);
         
         BloodPressureGraph.setData(lineChartData);
         BloodPressureGraph.createSymbolsProperty();
@@ -107,6 +121,7 @@ public class BloodPressureScreenController implements Initializable, TransitionC
     {
         myController = screenParent;
     }
+    
     @FXML
     private void handleButtonAction(ActionEvent event) 
     {

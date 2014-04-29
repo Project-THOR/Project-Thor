@@ -14,7 +14,7 @@
 <Font name="Segoe UI" size="18.0" />
 </font>
 </Label>
-<Label layoutX="14.0" prefHeight="87.0" prefWidth="531.0" text="Physical Activity" textFill="#0070c0">
+<Label layoutX="14.0" prefHeight="87.0" prefWidth="727.0" text="Physical Activity" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="72.0" />
 </font>
@@ -39,16 +39,22 @@
 </font></Label><Label layoutX="169.0" layoutY="247.0" prefHeight="35.0" prefWidth="59.0" text="Date ">
 <font>
 <Font size="20.0" />
-</font></Label><DatePicker fx:id="physicalDatePicker" layoutX="246.0" layoutY="252.0" /><BarChart layoutX="468.0" layoutY="96.0">
+</font></Label><DatePicker fx:id="physicalDatePicker" layoutX="246.0" layoutY="252.0" /><BarChart fx:id="PhysicalActivityGraph" layoutX="468.0" layoutY="96.0">
   <xAxis>
     <CategoryAxis side="BOTTOM" />
   </xAxis>
   <yAxis>
-    <NumberAxis side="LEFT" />
+    <NumberAxis label="Minutes" side="LEFT" upperBound="400.0" />
   </yAxis>
-</BarChart><TextField fx:id="minutesTextField" layoutX="246.0" layoutY="206.0" prefHeight="25.0" prefWidth="174.0" /><Label text="Label" /><Label layoutX="144.0" layoutY="201.0" prefHeight="35.0" prefWidth="84.0" text="Minutes ">
+</BarChart><TextField fx:id="minutesTextField" layoutX="246.0" layoutY="206.0" prefHeight="25.0" prefWidth="174.0" /><Label layoutX="144.0" layoutY="201.0" prefHeight="35.0" prefWidth="84.0" text="Minutes ">
 <font>
 <Font size="20.0" />
-</font></Label>
+</font></Label><Label layoutX="32.0" layoutY="479.0" text="Cardio:">
+<font>
+<Font name="System Bold" size="12.0" />
+</font></Label><Label layoutX="32.0" layoutY="504.0" prefHeight="17.0" prefWidth="116.0" text="Strength Training:">
+<font>
+<Font name="System Bold" size="12.0" />
+</font></Label><Label layoutX="158.0" layoutY="479.0" prefHeight="17.0" prefWidth="486.0" text="Moderate Physical Activity—You feel your heart beat faster and you breathe faster too. " /><Label layoutX="158.0" layoutY="504.0" prefHeight="17.0" prefWidth="716.0" text="Resistance exercises—You work your muscles against resistance using weights or gravity (for example, push-ups, weightlifting)." />
 </children>
 </AnchorPane>

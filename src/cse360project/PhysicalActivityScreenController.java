@@ -26,6 +26,8 @@ import javafx.stage.Stage;
 import javafx.scene.control.DatePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 
 public class PhysicalActivityScreenController implements Initializable, TransitionController 
 {
@@ -66,11 +68,16 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
     public void initialize(URL url, ResourceBundle rb) 
     {
         UsernameDisplayLabel.setText(LoginScreenController.userName);
-        physicalActivityTypeChoiceBox.setItems(FXCollections.observableArrayList("First","second"));   
-        // Code that displays steps data on the chart
+        physicalActivityTypeChoiceBox.setItems(FXCollections.observableArrayList("Cardio","Strength Training"));   
+        // Code that displays activies data on the chart
         ObservableList<XYChart.Series<String, Number>> BarChartData = FXCollections.observableArrayList();
         BarChart.Series<String, Number> series = new BarChart.Series<String, Number>();
-        series.setName("First");
+        series.setName("Activity");
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Date");   
+        yAxis.setLabel("Minutes");
+        
         // For some reason it won't let me use a for/foreach loop to add 
         String tempDate = MainScreenController.dateList.get(0);
         int tempActivity = Integer.parseInt(MainScreenController.activityList.get(0));
@@ -81,20 +88,21 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
         series.getData().add(new XYChart.Data(tempDate, tempActivity));
         
         tempDate = MainScreenController.dateList.get(2);
-        tempActivity = Integer.parseInt(MainScreenController.stepsList.get(2));
+        tempActivity = Integer.parseInt(MainScreenController.activityList.get(2));
         series.getData().add(new XYChart.Data(tempDate, tempActivity));
         
         tempDate = MainScreenController.dateList.get(3);
-        tempActivity = Integer.parseInt(MainScreenController.stepsList.get(3));
+        tempActivity = Integer.parseInt(MainScreenController.activityList.get(3));
         series.getData().add(new XYChart.Data(tempDate, tempActivity));
+        
         tempDate = MainScreenController.dateList.get(4);
-        tempActivity = Integer.parseInt(MainScreenController.stepsList.get(4));
+        tempActivity = Integer.parseInt(MainScreenController.activityList.get(4));
         series.getData().add(new XYChart.Data(tempDate, tempActivity));
         
         BarChartData.add(series);
         
         PhysicalActivityGraph.setData(BarChartData);
-        //PhysicalActivityGraph.createSymbolsProperty();
+        PhysicalActivityGraph.barGapProperty();
     
     }  
     
@@ -104,10 +112,7 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
         myController = screenParent;
     }
     @FXML
-    /*private void handleButtonAction(ActionEvent event) 
-    {
-        
-    }*/
+    
     
     
     private void goToMainScreen()
