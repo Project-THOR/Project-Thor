@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -32,6 +33,33 @@
 <cursor>
 <Cursor fx:constant="HAND" />
 </cursor>
-</Button>
+</Button><Label layoutX="34.0" layoutY="146.0" text="Heart Rate:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
+</Label><TextField fx:id="HeartRateTextBox" layoutX="161.0" layoutY="140.0" prefHeight="35.0" prefWidth="223.0" promptText="Heart Rate" style="-fx-background-radius: 0;">
+<font>
+<Font name="Segoe UI" size="12.0" />
+</font>
+</TextField><Label layoutX="34.0" layoutY="206.0" text="Select Date:" textFill="#0070c0">
+<font>
+<Font name="Segoe UI" size="18.0" />
+</font>
+</Label><DatePicker fx:id="HeartRateDatePicker" layoutX="161.0" layoutY="200.0" prefHeight="35.0" prefWidth="223.0" promptText="Date" style="-fx-background-radius: 0;" /><LineChart fx:id="HeartRateGraph" layoutX="432.0" layoutY="128.0" legendVisible="false" prefHeight="444.0" prefWidth="547.0">
+<xAxis>
+<CategoryAxis side="BOTTOM" style="-fx-tick-label-fill: #0070c0;" tickLabelFill="#0070c0">
+<tickLabelFont>
+<Font name="Segoe UI" size="12.0" />
+</tickLabelFont>
+</CategoryAxis>
+</xAxis>
+<yAxis>
+<NumberAxis autoRanging="false" minorTickCount="0" side="LEFT" tickLabelFill="#0070c0" tickUnit="10.0" upperBound="200.0">
+<tickLabelFont>
+<Font name="Segoe UI" size="12.0" />
+</tickLabelFont>
+</NumberAxis>
+</yAxis>
+</LineChart>
 </children>
 </AnchorPane>

@@ -34,6 +34,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.chart.CategoryAxis;
 
 public class ExportPDF 
@@ -1596,10 +1598,11 @@ public class ExportPDF
                 {
                     while(dataResult.next())
                     {
-                        if(dataResult.getString(11) != null && dataResult.getString(3) != null)
+                        if(dataResult.getString(11) != null)
                         {
                            dateList.add(dataResult.getString(3));
                            pressureList.add(dataResult.getString(11));
+                           System.out.println("LAME");
                         }        
                     }   
                 }
@@ -1625,56 +1628,96 @@ public class ExportPDF
         
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Blood Pressure");
+        ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
         final LineChart<String, Number> PressureChart = new LineChart<String, Number>(xAxis, yAxis);
         PressureChart.setAnimated(false);
-        PressureChart.setTitle("Blood Pressure (in mmHg - millimeters of mercury)");
-
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("BMI");
-        String tempDate;
-        int tempSteps;
-        
-        tempDate = dateList.get(9).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(9));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = dateList.get(8).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(8));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = dateList.get(7).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(7));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = dateList.get(6).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(6));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = dateList.get(5).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(5));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-
-        tempDate = dateList.get(4).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(4));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = dateList.get(3).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(3));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = dateList.get(2).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(2));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = dateList.get(1).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(1));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
-        
-        tempDate = dateList.get(0).substring(5);
-        tempSteps = Integer.parseInt(pressureList.get(0));
-        series1.getData().add(new XYChart.Data(tempDate, tempSteps));
+        PressureChart.setTitle("Blood Pressure (Systolic and Diastolic)");
+        XYChart.Series seriesSys = new XYChart.Series();
+        XYChart.Series seriesDia = new XYChart.Series();
+        seriesSys.setName("Systolic");
+        seriesDia.setName("Diastolic");
  
+        String tempDate;
+        String[] tempBPVals;
+        int tempSystolic;
+        int tempDiastolic;
+
+        // For some reason it won't let me use a for/foreach loop to add 
+        tempDate = dateList.get(9);
+        tempBPVals = pressureList.get(9).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(8);
+        tempBPVals = pressureList.get(8).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(7);
+        tempBPVals = pressureList.get(7).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(6);
+        tempBPVals = pressureList.get(6).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(5);
+        tempBPVals = pressureList.get(5).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(4);
+        tempBPVals = pressureList.get(4).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(3);
+        tempBPVals = pressureList.get(3).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(2);
+        tempBPVals = pressureList.get(2).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(1);
+        tempBPVals = pressureList.get(1).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        tempDate = dateList.get(0);
+        tempBPVals = pressureList.get(0).split("/");
+        tempSystolic = Integer.parseInt(tempBPVals[0]);
+        tempDiastolic = Integer.parseInt(tempBPVals[1]);
+        seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
+        seriesDia.getData().add(new XYChart.Data(tempDate, tempDiastolic));
+        
+        lineChartData.addAll(seriesSys, seriesDia);
+        
+        PressureChart.setData(lineChartData);
+        PressureChart.createSymbolsProperty();
+  
         final Scene scene = new Scene(PressureChart, 800, 600);
         
         try
@@ -1685,7 +1728,6 @@ public class ExportPDF
         { 
             System.err.println("Cannot acquire stylesheet: " + ex.toString());
         }
-        PressureChart.getData().addAll(series1);
         stage.setScene(scene);
         //stage.show();
 

@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 public class ProfileScreenController implements Initializable, TransitionController 
 {
@@ -35,21 +36,24 @@ public class ProfileScreenController implements Initializable, TransitionControl
     public String feet;
     public String inches;
     public String bmi;
-    public String restingPulse;
-    
-    private TextField weightField;
-    private TextField feetField;
-    private TextField inchesField;
-    private TextField bmiField;
-    private TextField restingPulseField;
-
+    public String heartRate;
+ 
     @FXML
     private Button ProfileSaveButton;
     @FXML
     private Button ProfileCancelButton;
     @FXML
     private Label UsernameDisplayLabel;
-    
+    @FXML
+    private TextField weightField;
+    @FXML
+    private TextField heightFieldFt;
+    @FXML
+    private TextField heightFieldIn;
+    @FXML
+    private TextField bmiField;
+    @FXML
+    private TextField heartRateField;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -78,9 +82,9 @@ public class ProfileScreenController implements Initializable, TransitionControl
     private void saveButtonPressed(ActionEvent event)
     {
         weight       = weightField.getText();
-        feet         = feetField.getText();
-        inches       = inchesField.getText();
-        restingPulse = restingPulseField.getText();
+        feet         = heightFieldFt.getText();
+        inches       = heightFieldIn.getText();
+        heartRate    = heartRateField.getText();
         
         try 
         {  
@@ -130,7 +134,7 @@ public class ProfileScreenController implements Initializable, TransitionControl
                     updateStatement = connection.createStatement();
                     updateStatement.executeUpdate(profileUpdate);
                     
-                    profileUpdate = "UPDATE mydb.userData SET restingPulse = '" + restingPulse +"' WHERE user_name = '" + 
+                    profileUpdate = "UPDATE mydb.userData SET restingPulse = '" + heartRate +"' WHERE user_name = '" + 
                                                                                 LoginScreenController.userName + "' AND date = '" + date + "'"; 
                     
                     updateStatement = connection.createStatement();
@@ -144,7 +148,7 @@ public class ProfileScreenController implements Initializable, TransitionControl
                 {
                     String profileInsert = "INSERT INTO mydb.userData (user_name, date, weight, height, bmi, restingPulse ) VALUES "
                             + "(\""+ LoginScreenController.userName+ "\",\"" + 
-                            date + "\", \"" + weight +"\", \"" + height +"\", \"" + bmi +"\", \"" + restingPulse +"\")";
+                            date + "\", \"" + weight +"\", \"" + height +"\", \"" + bmi +"\", \"" + heartRate +"\")";
                     Statement insertStatement = connection.createStatement();
                     // Executes the statement and writes to the datebase.
                     insertStatement.executeUpdate(profileInsert);
