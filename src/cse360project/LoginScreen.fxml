@@ -19,7 +19,7 @@
 </PasswordField>
 <TextField fx:id="UsernameField" layoutX="389.0" layoutY="206.0" prefHeight="35.0" prefWidth="223.0" promptText="User Name" style="-fx-background-radius: 0;" text="TestUser">
 
-</TextField><Button fx:id="CreateAccount" focusTraversable="false" layoutX="389.0" layoutY="344.0" onAction="#goToCreateAccount" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Create Account" textFill="WHITE">
+</TextField><Button fx:id="CreateAccountButton" focusTraversable="false" layoutX="389.0" layoutY="344.0" onAction="#goToCreateAccount" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Create Account" textFill="WHITE">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>

@@ -1,10 +1,6 @@
 
 package cse360project;
 
-import static cse360project.StepsScreenController.databasePassword;
-import static cse360project.StepsScreenController.databaseUserName;
-import static cse360project.StepsScreenController.dbName;
-import static cse360project.StepsScreenController.url;
 import java.lang.*;
 import java.net.URL;
 import java.sql.*;
@@ -17,18 +13,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import javafx.scene.control.Separator;
 
@@ -67,7 +56,9 @@ public class NewUserScreenController implements Initializable, TransitionControl
     @FXML
     private TextField userNameField;
     @FXML
-    private TextField passwordField;
+    private TextField passwordField1;
+    @FXML
+    private TextField passwordField2;
     @FXML
     private TextField emailField;   
     @FXML
@@ -80,24 +71,21 @@ public class NewUserScreenController implements Initializable, TransitionControl
     private Button ProfileCreateButton;
     @FXML
     private Button ProfileCancelButton;
-    @FXML
-    private Label UsernameDisplayLabel;
-    @FXML
-    private TextField usernameField;
+
 
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        UsernameDisplayLabel.setText(LoginScreenController.userName);
-        genderBox.setItems(FXCollections.observableArrayList("Male","Female"));
-        securityBox.setItems(FXCollections.observableArrayList("Name of your first pet: ","Street you grew up on: ", "Favorite color: ", "Mother's maiden name:"));
+        //genderBox.setItems(FXCollections.observableArrayList("Male","Female"));
+        //securityBox.setItems(FXCollections.observableArrayList("Name of your first pet: ","Street you grew up on: ", "Favorite color: ", "Mother's maiden name:"));
 
      
-        genderBox = new ChoiceBox();
+        //genderBox = new ChoiceBox();
         genderBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Male","Female"));
-        securityBox = new ChoiceBox();
+      
+        //securityBox = new ChoiceBox();
         securityBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Name of your first pet: ","Street you grew up on: ", "Mother's maiden name:","Name of first teacher: ", "Childhood nickname: ","City or town of first job: "));
     }  
     
@@ -113,9 +101,9 @@ public class NewUserScreenController implements Initializable, TransitionControl
         
     }
     
-    private void goToMainScreen()
+    private void goToLoginScreen()
     {
-        myController.setScreen(ScreensFramework.mainScreenID);
+        myController.setScreen(ScreensFramework.loginScreenID);
     }
     
     @FXML
@@ -166,7 +154,7 @@ public class NewUserScreenController implements Initializable, TransitionControl
                                                                                 LoginScreenController.userName + "' AND date = '" + stepsDate + "'"; 
                     Statement updateStatement = connection.createStatement();
                     updateStatement.executeUpdate(stepsUpdate);
-                    goToMainScreen();
+                    goToLoginScreen();
                     connection.close();
                 }
                 // If there is not an entry already in the database for the specified date, the INSERT statement is used to create a new entry in the database.
@@ -178,7 +166,7 @@ public class NewUserScreenController implements Initializable, TransitionControl
                     // Executes the statement and writes to the datebase.
                     insertStatement.executeUpdate(stepsInsert);
                     // Returns to the main screen 
-                    goToMainScreen();
+                    goToLoginScreen();
                     // Closes the connection to the database.
                     connection.close();
                 }
@@ -201,6 +189,7 @@ public class NewUserScreenController implements Initializable, TransitionControl
     @FXML
     private void cancelButtonPressed(ActionEvent event)
     {
-        goToMainScreen();
+        ScreensFramework.GlobalRefresh();
+        goToLoginScreen();   
     }
 }
