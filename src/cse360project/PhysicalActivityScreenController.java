@@ -87,6 +87,7 @@ public class PhysicalActivityScreenController implements Initializable, Transiti
         tempDate = MainScreenController.dateList.get(3);
         tempActivity = Integer.parseInt(MainScreenController.stepsList.get(3));
         series.getData().add(new XYChart.Data(tempDate, tempActivity));
+        
         tempDate = MainScreenController.dateList.get(4);
         tempActivity = Integer.parseInt(MainScreenController.stepsList.get(4));
         series.getData().add(new XYChart.Data(tempDate, tempActivity));
