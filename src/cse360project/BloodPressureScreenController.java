@@ -77,8 +77,6 @@ public class BloodPressureScreenController implements Initializable, TransitionC
         // For some reason it won't let me use a for/foreach loop to add 
         tempDate = MainScreenController.dateList.get(4);
         tempBPVals = MainScreenController.bloodPressureList.get(4).split("/");
-        System.out.println(tempBPVals[0]);
-        System.out.println(tempBPVals[1]);
         tempSystolic = Integer.parseInt(tempBPVals[0]);
         tempDiastolic = Integer.parseInt(tempBPVals[1]);
         seriesSys.getData().add(new XYChart.Data(tempDate, tempSystolic));
