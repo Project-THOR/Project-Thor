@@ -51,7 +51,7 @@
 </CategoryAxis>
 </xAxis>
 <yAxis>
-<NumberAxis autoRanging="false" minorTickCount="0" side="LEFT" tickLabelFill="#0070c0" tickUnit="2000.0" upperBound="10000.0">
+<NumberAxis autoRanging="false" minorTickCount="0" side="LEFT" tickLabelFill="#0070c0" tickUnit="180.0" upperBound="1260.0">
 <tickLabelFont>
 <Font name="Segoe UI" size="12.0" />
 </tickLabelFont>

@@ -288,11 +288,11 @@ public class MainScreenController implements Initializable, TransitionController
                 {
                     while(dataResult.next())
                     {
-                        if(dataResult.getString(14) != null && dataResult.getString(3) != null)
+                        if(dataResult.getString(11) != null && dataResult.getString(3) != null)
                         {
                             // adds the values that were obtained from the database to a local arraylist
                             dateList.add(dataResult.getString(3));
-                            stepsList.add(dataResult.getString(14));
+                            bloodPressureList.add(dataResult.getString(11));
                         } 
                     }   
                 }
@@ -356,11 +356,11 @@ public class MainScreenController implements Initializable, TransitionController
                 {
                     while(dataResult.next())
                     {
-                        if(dataResult.getString(14) != null && dataResult.getString(3) != null)
+                        if(dataResult.getString(7) != null && dataResult.getString(3) != null)
                         {
                             // adds the values that were obtained from the database to a local arraylist
                             dateList.add(dataResult.getString(3));
-                            sleepList.add(dataResult.getString(14));
+                            sleepList.add(dataResult.getString(7));
                         } 
                     }   
                 }
