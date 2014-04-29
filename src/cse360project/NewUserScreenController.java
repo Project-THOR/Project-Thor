@@ -78,14 +78,7 @@ public class NewUserScreenController implements Initializable, TransitionControl
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        //genderBox.setItems(FXCollections.observableArrayList("Male","Female"));
-        //securityBox.setItems(FXCollections.observableArrayList("Name of your first pet: ","Street you grew up on: ", "Favorite color: ", "Mother's maiden name:"));
-
-     
-        //genderBox = new ChoiceBox();
         genderBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Male","Female"));
-      
-        //securityBox = new ChoiceBox();
         securityBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Name of your first pet: ","Street you grew up on: ", "Mother's maiden name:","Name of first teacher: ", "Childhood nickname: ","City or town of first job: "));
     }  
     

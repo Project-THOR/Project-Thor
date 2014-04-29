@@ -30,17 +30,6 @@
 <font>
 <Font name="Segoe UI" size="72.0" />
 </font>
-</Label><Label layoutX="648.0" layoutY="207.0" text="For Testing Purposes">
-<font>
-<Font size="24.0" />
-</font></Label><Label layoutX="648.0" layoutY="254.0" text="Username: TestUser">
-<font>
-<Font size="24.0" />
-</font>
-</Label><Label layoutX="648.0" layoutY="299.0" text="Password: test">
-<font>
-<Font size="24.0" />
-</font>
 </Label><Button fx:id="ForgotPasswordButton" focusTraversable="false" layoutX="389.0" layoutY="390.0" onAction="#goToForgotPassword" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: #0070c0; -fx-background-radius: 0;" text="Forgot Password" textFill="WHITE">
 <font>
 <Font name="Segoe UI" size="18.0" />
