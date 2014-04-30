@@ -1,11 +1,12 @@
 
 package cse360project;
 
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.scene.image.Image;
 
 
 public class ScreensFramework extends Application 
@@ -85,6 +86,8 @@ public class ScreensFramework extends Application
             System.err.println("Cannot acquire stylesheet: " + ex.toString());
         }
         primaryStage.setTitle("THOR - The Health Organizer");
+        Image image = new Image("icon.PNG");
+        primaryStage.getIcons().add(image);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
