@@ -31,27 +31,23 @@
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField fx:id="userNameField" layoutX="216.0" layoutY="141.0" prefHeight="35.0" prefWidth="206.0" promptText="ThorUser1234" style="-fx-background-radius: 0;" /><Label layoutX="32.0" layoutY="273.0" text="Reenter Password:" textFill="#0070c0">
+</Label><TextField fx:id="userNameField" layoutX="216.0" layoutY="141.0" prefHeight="35.0" prefWidth="208.0" promptText="ThorUser1234" style="-fx-background-radius: 0;" /><Label layoutX="32.0" layoutY="231.0" text="Create Password:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><Label layoutX="32.0" layoutY="231.0" text="Create Password:" textFill="#0070c0">
+</Label><Label layoutX="32.0" layoutY="273.0" text="Birthdate:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField fx:id="birthDateField" layoutX="216.0" layoutY="310.0" prefHeight="35.0" prefWidth="206.0" promptText="MM/DD/YYYY" style="-fx-background-radius: 0;" /><Label layoutX="32.0" layoutY="316.0" text="Birthdate:" textFill="#0070c0">
+</Label><Label layoutX="32.0" layoutY="316.0" text="Gender:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><Label layoutX="32.0" layoutY="359.0" text="Gender:" textFill="#0070c0">
+</Label><ChoiceBox fx:id="genderBox" layoutX="215.0" layoutY="310.0" prefHeight="35.0" prefWidth="208.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0; -fx-border-color: #d3d3d3;" /><ChoiceBox fx:id="securityBox" layoutX="216.0" layoutY="353.0" prefHeight="35.0" prefWidth="208.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0; -fx-border-color: #d3d3d3;" /><Label layoutX="33.0" layoutY="359.0" text="Security Question:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><ChoiceBox fx:id="genderBox" layoutX="215.0" layoutY="353.0" prefHeight="35.0" prefWidth="206.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0; -fx-border-color: #d3d3d3;" /><ChoiceBox fx:id="securityBox" layoutX="216.0" layoutY="396.0" prefHeight="35.0" prefWidth="206.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0; -fx-border-color: #d3d3d3;" /><Label layoutX="33.0" layoutY="402.0" text="Security Question:" textFill="#0070c0">
-<font>
-<Font name="Segoe UI" size="18.0" />
-</font>
-</Label><TextField fx:id="emailField" layoutX="216.0" layoutY="183.0" prefHeight="35.0" prefWidth="206.0" promptText="Thor1234@email.com" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="189.0" text="Email:" textFill="#0070c0">
+</Label><TextField fx:id="emailField" layoutX="216.0" layoutY="183.0" prefHeight="35.0" prefWidth="208.0" promptText="Thor1234@email.com" style="-fx-background-radius: 0;" /><Label layoutX="34.0" layoutY="189.0" text="Email:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
@@ -71,11 +67,11 @@
 <font>
 <Font name="Segoe UI" size="12.0" />
 </font>
-</Label><Label layoutX="34.0" layoutY="445.0" text="Answer:" textFill="#0070c0">
+</Label><Label layoutX="34.0" layoutY="402.0" text="Answer:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="18.0" />
 </font>
-</Label><TextField fx:id="answerField" layoutX="216.0" layoutY="439.0" prefHeight="35.0" prefWidth="206.0" promptText="Enter your security answer " style="-fx-background-radius: 0;" /><PasswordField fx:id="passwordField1" layoutX="216.0" layoutY="225.0" prefHeight="35.0" prefWidth="206.0" promptText="Password" style="-fx-background-radius: 0;" /><PasswordField fx:id="passwordField2" layoutX="216.0" layoutY="267.0" prefHeight="35.0" prefWidth="206.0" promptText="Confirm Password" style="-fx-background-radius: 0;" /><Label layoutX="539.0" layoutY="130.0" text="Username Rules:" textFill="#0070c0">
+</Label><TextField fx:id="answerField" layoutX="216.0" layoutY="396.0" prefHeight="35.0" prefWidth="208.0" promptText="Enter your security answer " style="-fx-background-radius: 0;" /><PasswordField fx:id="passwordField1" layoutX="216.0" layoutY="225.0" prefHeight="35.0" prefWidth="208.0" promptText="Password" style="-fx-background-radius: 0;" /><Label layoutX="539.0" layoutY="130.0" text="Username Rules:" textFill="#0070c0">
 <font>
 <Font name="Segoe UI" size="12.0" />
 </font>
@@ -91,6 +87,6 @@
 <font>
 <Font name="Segoe UI" size="12.0" />
 </font>
-</Label>
+</Label><DatePicker fx:id="BirthDatePicker" layoutX="216.0" layoutY="267.0" prefHeight="35.0" prefWidth="208.0" promptText="Birthday" style="-fx-background-radius: 0;" />
 </children>
 </AnchorPane>

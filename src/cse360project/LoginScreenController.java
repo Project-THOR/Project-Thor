@@ -60,6 +60,8 @@ public class LoginScreenController implements Initializable, TransitionControlle
         userName = UsernameField.getText();
         password = PasswordField.getText();
         
+        System.out.println(userName);
+        System.out.println(password);
 	try 
         {  
             Class.forName("com.mysql.jdbc.Driver");
@@ -79,12 +81,20 @@ public class LoginScreenController implements Initializable, TransitionControlle
             connection = DriverManager.getConnection(url + dbName,databaseUserName, databasePassword);
             if (connection != null) 
             {
-                String loginQuery = "SELECT * FROM mydb.user WHERE userName = '"+ userName+"' AND userPassword = '"+password+"'";
+                //String loginQuery = "SELECT * FROM mydb.user WHERE userName = '"+ userName+"' AND userPassword = '"+password+"'";
+                String loginQuery = "SELECT * FROM mydb.user WHERE userName = '"+ userName+"'";
                 PreparedStatement statement = connection.prepareStatement(loginQuery);
                 ResultSet result = statement.executeQuery();
                 if(result.next())
                 {
-                    myController.setScreen(ScreensFramework.mainScreenID);
+                    String pwdQuery = "SELECT * FROM mydb.user WHERE userPassword = '"+ password+"'";
+                    PreparedStatement pwdStatement = connection.prepareStatement(pwdQuery);
+                    ResultSet pwdResult = pwdStatement.executeQuery();
+                    if(pwdResult.next())
+                    {
+                        ScreensFramework.GlobalRefresh();
+                        myController.setScreen(ScreensFramework.mainScreenID);
+                    } 
                 }
                 else
                 {
