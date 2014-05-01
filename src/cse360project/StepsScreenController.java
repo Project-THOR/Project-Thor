@@ -103,6 +103,7 @@ public class StepsScreenController implements Initializable, TransitionControlle
    @FXML 
     private void goToMainScreen()
     {
+        ScreensFramework.GlobalRefresh();
         myController.setScreen(ScreensFramework.mainScreenID);
     }
     

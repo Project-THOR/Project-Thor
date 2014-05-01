@@ -151,12 +151,15 @@ public class NewUserScreenController implements Initializable, TransitionControl
                 {  
                     String userInsert = "INSERT INTO mydb.user (userName, userPassword, userEmail, userGender, birthDate, userAnswer, userQuestion) "
                             + "VALUES ( '"+userName+" ' ,"+" ' "+password1+"',"+" ' "+email+"',"+" ' "+gender+"',"+" ' "+birthDate+"',"+" ' "+answer+"',"+" ' "+securityQuestion+"')";
-                   
-                    String dataInsert = "INSERT INTO mydb.user (userName, userPassword, userEmail, userGender, birthDate, userAnswer, userQuestion) "
-                            + "VALUES ( '"+userName+" ' ,"+" ' "+password1+"',"+" ' "+email+"',"+" ' "+gender+"',"+" ' "+birthDate+"',"+" ' "+answer+"',"+" ' "+securityQuestion+"')";
-                    System.out.println(userInsert);
                     Statement insertStatement = connection.createStatement();
                     insertStatement.executeUpdate(userInsert);
+                   // Inserts default data when an account is created.
+                    for(int i = 0; i < 10; i++)
+                    {
+                        String dataInsert = "INSERT INTO mydb.userData (user_name, date)VALUES ( '"+userName+" ' ,"+" '2014-01-1"+ i +"')";
+                        Statement dataStatement = connection.createStatement();
+                        insertStatement.executeUpdate(dataInsert);
+                    }
                     goToLoginScreen();
                     connection.close();
                 }
