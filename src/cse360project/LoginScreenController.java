@@ -87,22 +87,25 @@ public class LoginScreenController implements Initializable, TransitionControlle
                 ResultSet result = statement.executeQuery();
                 if(result.next())
                 {
-                    String pwdQuery = "SELECT * FROM mydb.user WHERE userPassword = '"+ password+"'";
+                    System.out.println(result.getString(4));
+                    if(result.getString(4).compareTo(password) == 0)
+                    {
+                        ScreensFramework.GlobalRefresh();
+                        myController.setScreen(ScreensFramework.mainScreenID);
+                        connection.close(); 
+                    }
+                   /* String pwdQuery = "SELECT * FROM mydb.user WHERE userPassword = '"+ password+"'";
                     PreparedStatement pwdStatement = connection.prepareStatement(pwdQuery);
                     ResultSet pwdResult = pwdStatement.executeQuery();
                     if(pwdResult.next())
                     {
-                        ScreensFramework.GlobalRefresh();
-                        myController.setScreen(ScreensFramework.mainScreenID);
-                    } 
+                        
+                    } */
                 }
                 else
                 {
                     showLoginError();
                 }
-                
-                //ResultSet result = statement.executeQuery("SELECT * FROM mydb.user WHERE userName=" + userName + " AND userPassword="+ password);
-                //ResultSet result = statement.executeQuery("SELECT * FROM mydb.user WHERE userName = '"+ userName+"' AND userPassword = '"+password+"'"); 
               connection.close();  
             }
             else 
@@ -118,7 +121,7 @@ public class LoginScreenController implements Initializable, TransitionControlle
 	}
         //StepsScreenController.populateStepsGraph();
         // Refreshes all of the scenes so that newly entered data will be reflected  
-        ScreensFramework.GlobalRefresh();
+        //ScreensFramework.GlobalRefresh();
     }
     
     @FXML 

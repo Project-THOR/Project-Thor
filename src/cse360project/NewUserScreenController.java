@@ -97,19 +97,19 @@ public class NewUserScreenController implements Initializable, TransitionControl
     @FXML
     private void saveButtonPressed(ActionEvent event)
     {
-        userName         = userNameField.getText();
-        password1        = passwordField1.getText();
+        userName             = userNameField.getText();
+        password1            = passwordField1.getText();
         if(emailField.getText() != null)
         {
-            email        = emailField.getText();
+            email            = emailField.getText();
         }
         if(answerField.getText() != null)
         {
-            answer       = answerField.getText();
+            answer           = answerField.getText();
         }
         if(genderBox.getValue().toString() != null)
         {
-            gender       = genderBox.getValue().toString();
+            gender           = genderBox.getValue().toString();
         }
         if(securityBox.getValue().toString() != null)
         {
@@ -150,7 +150,7 @@ public class NewUserScreenController implements Initializable, TransitionControl
                 else                                                                                       
                 {  
                     String userInsert = "INSERT INTO mydb.user (userName, userPassword, userEmail, userGender, birthDate, userAnswer, userQuestion) "
-                            + "VALUES ( '"+userName+" ' ,"+" ' "+password1+"',"+" ' "+email+"',"+" ' "+gender+"',"+" ' "+birthDate+"',"+" ' "+answer+"',"+" ' "+securityQuestion+"')";
+                            + "VALUES ( '"+userName+" ' ,"+" '"+password1+"',"+" ' "+email+"',"+" ' "+gender+"',"+" ' "+birthDate+"',"+" ' "+answer+"',"+" ' "+securityQuestion+"')";
                     Statement insertStatement = connection.createStatement();
                     insertStatement.executeUpdate(userInsert);
                    // Inserts default data when an account is created.
