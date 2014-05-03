@@ -41,8 +41,6 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     @FXML
     private Button ProfileCancelButton;
     @FXML
-    private Label UsernameDisplayLabel;
-    @FXML
     private ChoiceBox securityBox;
     @FXML
     private TextField UserNameTextField;
@@ -54,7 +52,7 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        UsernameDisplayLabel.setText(LoginScreenController.userName);
+        //UsernameDisplayLabel.setText(LoginScreenController.userName);
         //securityBox = new ChoiceBox();
         securityBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Name of your first pet: ","Street you grew up on: ", "Mother's maiden name:","Name of first teacher: ", "Childhood nickname: ","City or town of first job: "));
     }  
