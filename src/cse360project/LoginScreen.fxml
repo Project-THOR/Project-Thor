@@ -14,7 +14,7 @@
 </font>
 <cursor>
 <Cursor fx:constant="HAND" />
-</cursor></Button><PasswordField fx:id="PasswordField" layoutX="389.0" layoutY="253.0" prefHeight="35.0" prefWidth="223.0" promptText="Password" style="-fx-background-radius: 0;" text="Test">
+</cursor></Button><PasswordField fx:id="PasswordField" layoutX="389.0" layoutY="253.0" prefHeight="35.0" prefWidth="223.0" promptText="Password" style="-fx-background-radius: 0;" text="test">
 
 </PasswordField>
 <TextField fx:id="UsernameField" layoutX="389.0" layoutY="206.0" prefHeight="35.0" prefWidth="223.0" promptText="User Name" style="-fx-background-radius: 0;" text="TestUser">

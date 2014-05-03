@@ -67,6 +67,7 @@ public class StepsScreenController implements Initializable, TransitionControlle
         String tempDate;
         int tempSteps;
         // For some reason it won't let me use a for/foreach loop to add 
+        
         tempDate = MainScreenController.dateList.get(4);
         tempSteps = Integer.parseInt(MainScreenController.stepsList.get(4));
         series.getData().add(new XYChart.Data(tempDate, tempSteps));
@@ -102,6 +103,7 @@ public class StepsScreenController implements Initializable, TransitionControlle
    @FXML 
     private void goToMainScreen()
     {
+        ScreensFramework.GlobalRefresh();
         myController.setScreen(ScreensFramework.mainScreenID);
     }
     
