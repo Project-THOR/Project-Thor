@@ -115,11 +115,6 @@ public class MainScreenController implements Initializable, TransitionController
             connection = DriverManager.getConnection(url + dbName,databaseUserName, databasePassword);
             if (connection != null) 
             {
-                // mySQL Query: SELECT * FROM(SELECT * FROM mydb.userdata WHERE user_name = 'TestUser' ORDER BY date DESC LIMIT 5) sub ORDER BY date ASC;
-                // It selects the userdata of the user that is logged in and gets the 5 latest (DESC) entries by date and then sorts so we get the dates
-                // in order of Earliest date to the most recent date
-                //String graphQuery = "SELECT * FROM(SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName + 
-                                                                                     //   "' ORDER BY date DESC LIMIT 6) sub ORDER BY date ASC";
                 String graphQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +  "' ORDER BY date DESC";
                 PreparedStatement dataStatement = connection.prepareStatement(graphQuery);
                 ResultSet dataResult = dataStatement.executeQuery();

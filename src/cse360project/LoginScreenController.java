@@ -36,7 +36,7 @@ public class LoginScreenController implements Initializable, TransitionControlle
     @FXML
     private Button          ForgotPasswordButton;
     @FXML
-    private Button          CreateAccount;
+    private Button          CreateAccountButton;
     @FXML
     private PasswordField   PasswordField;
     @FXML
@@ -60,6 +60,8 @@ public class LoginScreenController implements Initializable, TransitionControlle
         userName = UsernameField.getText();
         password = PasswordField.getText();
         
+        System.out.println(userName);
+        System.out.println(password);
 	try 
         {  
             Class.forName("com.mysql.jdbc.Driver");
@@ -79,20 +81,31 @@ public class LoginScreenController implements Initializable, TransitionControlle
             connection = DriverManager.getConnection(url + dbName,databaseUserName, databasePassword);
             if (connection != null) 
             {
-                String loginQuery = "SELECT * FROM mydb.user WHERE userName = '"+ userName+"' AND userPassword = '"+password+"'";
+                //String loginQuery = "SELECT * FROM mydb.user WHERE userName = '"+ userName+"' AND userPassword = '"+password+"'";
+                String loginQuery = "SELECT * FROM mydb.user WHERE userName = '"+ userName+"'";
                 PreparedStatement statement = connection.prepareStatement(loginQuery);
                 ResultSet result = statement.executeQuery();
                 if(result.next())
                 {
-                    myController.setScreen(ScreensFramework.mainScreenID);
+                    System.out.println(result.getString(4));
+                    if(result.getString(4).compareTo(password) == 0)
+                    {
+                        ScreensFramework.GlobalRefresh();
+                        myController.setScreen(ScreensFramework.mainScreenID);
+                        connection.close(); 
+                    }
+                   /* String pwdQuery = "SELECT * FROM mydb.user WHERE userPassword = '"+ password+"'";
+                    PreparedStatement pwdStatement = connection.prepareStatement(pwdQuery);
+                    ResultSet pwdResult = pwdStatement.executeQuery();
+                    if(pwdResult.next())
+                    {
+                        
+                    } */
                 }
                 else
                 {
                     showLoginError();
                 }
-                
-                //ResultSet result = statement.executeQuery("SELECT * FROM mydb.user WHERE userName=" + userName + " AND userPassword="+ password);
-                //ResultSet result = statement.executeQuery("SELECT * FROM mydb.user WHERE userName = '"+ userName+"' AND userPassword = '"+password+"'"); 
               connection.close();  
             }
             else 
@@ -108,21 +121,22 @@ public class LoginScreenController implements Initializable, TransitionControlle
 	}
         //StepsScreenController.populateStepsGraph();
         // Refreshes all of the scenes so that newly entered data will be reflected  
-        ScreensFramework.GlobalRefresh();
+        //ScreensFramework.GlobalRefresh();
     }
     
     @FXML 
     private void goToCreateAccount(ActionEvent event)
     {
         myController.setScreen(ScreensFramework.newAccountScreenID);
-        ScreensFramework.GlobalRefresh();
+        //ScreensFramework.GlobalRefresh();
     }
     
     @FXML 
     private void goToForgotPassword(ActionEvent event)
     {
+        //ScreensFramework.GlobalRefresh();
         myController.setScreen(ScreensFramework.forgotPasswordScreenID);
-        ScreensFramework.GlobalRefresh();
+        
     }
   
     public static void showLoginError()

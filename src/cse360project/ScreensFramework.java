@@ -1,11 +1,12 @@
 
 package cse360project;
 
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.scene.image.Image;
 
 
 public class ScreensFramework extends Application 
@@ -43,11 +44,11 @@ public class ScreensFramework extends Application
     public static String sleepScreenID              = "sleepScreen";
     public static String sleepScreenFile            = "SleepScreen.fxml";
     
-    public static String newAccountScreenID         = "newAccount";
-    public static String newAccountScreenFile       = "NewAccountScreen.fxml";
+    public static String newAccountScreenID         = "newAccountScreen";
+    public static String newAccountScreenFile       = "NewUser.fxml";
             
     public static String forgotPasswordScreenID     = "forgotPasswordScreen";
-    public static String forgotPasswordScreenFile   = "ForgotPasswordScreen.fxml";
+    public static String forgotPasswordScreenFile   = "ForgotPassword.fxml";
  
     public static ScreensController mainContainer   = new ScreensController();
    
@@ -85,6 +86,8 @@ public class ScreensFramework extends Application
             System.err.println("Cannot acquire stylesheet: " + ex.toString());
         }
         primaryStage.setTitle("THOR - The Health Organizer");
+        Image image = new Image("icon.PNG");
+        primaryStage.getIcons().add(image);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

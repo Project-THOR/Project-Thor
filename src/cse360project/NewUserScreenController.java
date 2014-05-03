@@ -1,10 +1,7 @@
 
 package cse360project;
 
-import static cse360project.StepsScreenController.databasePassword;
-import static cse360project.StepsScreenController.databaseUserName;
-import static cse360project.StepsScreenController.dbName;
-import static cse360project.StepsScreenController.url;
+import static cse360project.LoginScreenController.userName;
 import java.lang.*;
 import java.net.URL;
 import java.sql.*;
@@ -17,87 +14,66 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 
 import javafx.scene.control.Separator;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class NewUserScreenController implements Initializable, TransitionController 
 {
     ScreensController myController;
 
 
-    public static String stepsUserName      = LoginScreenController.userName;
-    public static String password           = LoginScreenController.password;
-
-    public static String userName;
-   // public static String password;
-
+    public static String newUserName      = LoginScreenController.userName;
+    public static String newPassword      = LoginScreenController.password;
+    
     public static String url                = "jdbc:mysql://168.62.213.183:3306/";
     public static String dbName             = "mydb";
     public static String driver             = "com.mysql.jdbc.Driver";
     public static String databaseUserName   = "CSE360Team";
     public static String databasePassword   = "FitnessTeam#360";
     
+    public String gender = "no data";
+    public String securityQuestion = "no data";
+    public String numberOfSteps = "no data";
+    public String password1 = "no data";
+    public String email = "no data";
+    public String birthDate = "no data";
+    public String answer = "no data";
+    
+    @FXML
+    private TextField  userNameField;
+    @FXML
+    private TextField  passwordField1;
+    @FXML
+    private TextField  emailField;   
+    @FXML
+    private TextField  answerField;
+    @FXML
+    private DatePicker BirthDatePicker;
+    @FXML
+    private ChoiceBox  genderBox;
+    @FXML
+    private ChoiceBox  securityBox;
+    @FXML
+    private Button     ProfileCreateButton;
+    @FXML
+    private Button     ProfileCancelButton;
 
-    public String gender;
-    public String securityQuestion;
-    public String numberOfSteps;
-    public String stepsDate;
-    
-    /*@FXML 
-    public String email;
-    public String numberOfSteps;
-    public String stepsDate;
-    public String answer;
-    public String birthdate;
-    public String gender;
-    public String securityQuestion;*/
-    
-    @FXML
-    private TextField userNameField;
-    @FXML
-    private TextField passwordField;
-    @FXML
-    private TextField emailField;   
-    @FXML
-    private TextField answerField;
-    @FXML
-    private ChoiceBox genderBox;
-    @FXML
-    private ChoiceBox securityBox;
-    @FXML
-    private Button ProfileCreateButton;
-    @FXML
-    private Button ProfileCancelButton;
-    @FXML
-    private Label UsernameDisplayLabel;
-    @FXML
-    private TextField usernameField;
 
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        UsernameDisplayLabel.setText(LoginScreenController.userName);
-        genderBox.setItems(FXCollections.observableArrayList("Male","Female"));
-        securityBox.setItems(FXCollections.observableArrayList("Name of your first pet: ","Street you grew up on: ", "Favorite color: ", "Mother's maiden name:"));
-
-     
-        genderBox = new ChoiceBox();
         genderBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Male","Female"));
-        securityBox = new ChoiceBox();
         securityBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Name of your first pet: ","Street you grew up on: ", "Mother's maiden name:","Name of first teacher: ", "Childhood nickname: ","City or town of first job: "));
     }  
     
@@ -113,26 +89,37 @@ public class NewUserScreenController implements Initializable, TransitionControl
         
     }
     
-    private void goToMainScreen()
+    private void goToLoginScreen()
     {
-        myController.setScreen(ScreensFramework.mainScreenID);
+        myController.setScreen(ScreensFramework.loginScreenID);
     }
     
     @FXML
     private void saveButtonPressed(ActionEvent event)
     {
-        //numberOfSteps = NumberOfStepsField.getText();
-        //stepsDate     = StepsDateEntryField.getText();
-
-        /*gender = genderBox.getValue().toString();
+        userName             = userNameField.getText();
+        password1            = passwordField1.getText();
+        if(emailField.getText() != null)
+        {
+            email            = emailField.getText();
+        }
+        if(answerField.getText() != null)
+        {
+            answer           = answerField.getText();
+        }
+        if(genderBox.getValue().toString() != null)
+        {
+            gender           = genderBox.getValue().toString();
+        }
+        if(securityBox.getValue().toString() != null)
+        {
+            securityQuestion =  securityBox.getValue().toString();
+        }
+         if(BirthDatePicker.getValue().toString() != null)
+        {
+            birthDate        = BirthDatePicker.getValue().toString();
+        }
         
-        userName = userNameField.getValue().toString();
-        password = passwordField.getValue().toString();
-        email = emailField.getValue().toString();
-        birthdate = emailField.getValue().toString();
-        answer = answerField.getValue().toString();
-        gender = genderBox.getValue().toString();
-        securityQuestion = securityBox.getValue().toString();*/
         
         try 
         {  
@@ -150,38 +137,33 @@ public class NewUserScreenController implements Initializable, TransitionControl
  
 	try 
         {
-            // Makes connection to database
             connection = DriverManager.getConnection(url + dbName,databaseUserName, databasePassword);
             if (connection != null) 
             {
-                // Checks to see if there is already an entry in the database for the user on the spcified date
-                String stepsQuery = "SELECT * FROM mydb.userData WHERE user_name = '"+ LoginScreenController.userName +"' AND date = '" + stepsDate + "'";
-                PreparedStatement checkStatement = connection.prepareStatement(stepsQuery);
-                ResultSet result = checkStatement.executeQuery();
-                // If there is already an entry for that date, the UPDATE statement is used so that it will just update the exiting entry for that 
-                // date instead of creating a whole new entry with the same date.  --->NOTE: Spaces are important <----
+                String loginQuery = "SELECT * FROM mydb.user WHERE userName = '"+ userName+"'";
+                PreparedStatement statement = connection.prepareStatement(loginQuery);
+                ResultSet result = statement.executeQuery();
                 if(result.next())
                 {
-                    String stepsUpdate = "UPDATE mydb.userData SET steps = '" + numberOfSteps +"' WHERE user_name = '" + 
-                                                                                LoginScreenController.userName + "' AND date = '" + stepsDate + "'"; 
-                    Statement updateStatement = connection.createStatement();
-                    updateStatement.executeUpdate(stepsUpdate);
-                    goToMainScreen();
-                    connection.close();
+                    showUserNameExists();
                 }
-                // If there is not an entry already in the database for the specified date, the INSERT statement is used to create a new entry in the database.
-                else
-                {
-                    String stepsInsert = "INSERT INTO mydb.userData (user_name, date, steps ) VALUES (\""+ LoginScreenController.userName+ "\",\"" + 
-                                                                                                           stepsDate + "\", \"" + numberOfSteps +"\")";
+                else                                                                                       
+                {  
+                    String userInsert = "INSERT INTO mydb.user (userName, userPassword, userEmail, userGender, birthDate, userAnswer, userQuestion) "
+                            + "VALUES ( '"+userName+" ' ,"+" '"+password1+"',"+" ' "+email+"',"+" ' "+gender+"',"+" ' "+birthDate+"',"+" ' "+answer+"',"+" ' "+securityQuestion+"')";
                     Statement insertStatement = connection.createStatement();
-                    // Executes the statement and writes to the datebase.
-                    insertStatement.executeUpdate(stepsInsert);
-                    // Returns to the main screen 
-                    goToMainScreen();
-                    // Closes the connection to the database.
+                    insertStatement.executeUpdate(userInsert);
+                   // Inserts default data when an account is created.
+                    for(int i = 0; i < 10; i++)
+                    {
+                        String dataInsert = "INSERT INTO mydb.userData (user_name, date)VALUES ( '"+userName+" ' ,"+" '2014-01-1"+ i +"')";
+                        Statement dataStatement = connection.createStatement();
+                        insertStatement.executeUpdate(dataInsert);
+                    }
+                    goToLoginScreen();
                     connection.close();
                 }
+              connection.close();  
             }
             else 
             {
@@ -194,13 +176,27 @@ public class NewUserScreenController implements Initializable, TransitionControl
             e.printStackTrace();
             return;
 	}
+        //StepsScreenController.populateStepsGraph();
         // Refreshes all of the scenes so that newly entered data will be reflected  
         ScreensFramework.GlobalRefresh();
     }
-    
+    public void showUserNameExists()
+    {
+        Stage newStage = new Stage();
+        VBox comp = new VBox();
+        Label loginError = new Label("Username Already Exists");
+        comp.getChildren().add(loginError);
+        Scene stageScene = new Scene(comp, 300, 300);
+        newStage.setScene(stageScene);
+        newStage.show();
+        myController.setScreen(ScreensFramework.loginScreenID);
+       
+    }  
+   
     @FXML
     private void cancelButtonPressed(ActionEvent event)
     {
-        goToMainScreen();
+        ScreensFramework.GlobalRefresh();
+        goToLoginScreen();   
     }
 }

@@ -57,30 +57,30 @@ public class CaloriesScreenController implements Initializable, TransitionContro
         
         ObservableList<XYChart.Series<String, Number>> lineChartData = FXCollections.observableArrayList();
         LineChart.Series<String, Number> series = new LineChart.Series<String, Number>();
-        series.setName("Steps");
+        series.setName("Calories");
  
         String tempDate;
-        int tempSteps;
+        int tempCalories;
         // For some reason it won't let me use a for/foreach loop to add 
         tempDate = MainScreenController.dateList.get(4);
-        tempSteps = Integer.parseInt(MainScreenController.caloriesList.get(4));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        tempCalories = Integer.parseInt(MainScreenController.caloriesList.get(4));
+        series.getData().add(new XYChart.Data(tempDate, tempCalories));
         
         tempDate = MainScreenController.dateList.get(3);
-        tempSteps = Integer.parseInt(MainScreenController.caloriesList.get(3));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        tempCalories = Integer.parseInt(MainScreenController.caloriesList.get(3));
+        series.getData().add(new XYChart.Data(tempDate, tempCalories));
         
         tempDate = MainScreenController.dateList.get(2);
-        tempSteps = Integer.parseInt(MainScreenController.caloriesList.get(2));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        tempCalories = Integer.parseInt(MainScreenController.caloriesList.get(2));
+        series.getData().add(new XYChart.Data(tempDate, tempCalories));
         
         tempDate = MainScreenController.dateList.get(1);
-        tempSteps = Integer.parseInt(MainScreenController.caloriesList.get(1));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        tempCalories = Integer.parseInt(MainScreenController.caloriesList.get(1));
+        series.getData().add(new XYChart.Data(tempDate, tempCalories));
         
         tempDate = MainScreenController.dateList.get(0);
-        tempSteps = Integer.parseInt(MainScreenController.caloriesList.get(0));
-        series.getData().add(new XYChart.Data(tempDate, tempSteps));
+        tempCalories= Integer.parseInt(MainScreenController.caloriesList.get(0));
+        series.getData().add(new XYChart.Data(tempDate, tempCalories));
         
         lineChartData.add(series);
         

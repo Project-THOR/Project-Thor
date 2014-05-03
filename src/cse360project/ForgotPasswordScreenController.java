@@ -1,10 +1,6 @@
 
 package cse360project;
 
-import static cse360project.StepsScreenController.databasePassword;
-import static cse360project.StepsScreenController.databaseUserName;
-import static cse360project.StepsScreenController.dbName;
-import static cse360project.StepsScreenController.url;
 import java.lang.*;
 import java.net.URL;
 import java.sql.*;
@@ -17,18 +13,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Separator;
 
 public class ForgotPasswordScreenController implements Initializable, TransitionController 
@@ -52,17 +41,19 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     @FXML
     private Button ProfileCancelButton;
     @FXML
-    private Label UsernameDisplayLabel;
-    @FXML
     private ChoiceBox securityBox;
-    
-    ChoiceBox cb = new ChoiceBox();
-    
+    @FXML
+    private TextField UserNameTextField;
+    @FXML
+    private TextField EmailTextField;
+    @FXML
+    private TextField AnswerTextField;
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        UsernameDisplayLabel.setText(LoginScreenController.userName);
-        securityBox = new ChoiceBox();
+        //UsernameDisplayLabel.setText(LoginScreenController.userName);
+        //securityBox = new ChoiceBox();
         securityBox.setItems(FXCollections.observableArrayList("Select one", new Separator(),"Name of your first pet: ","Street you grew up on: ", "Mother's maiden name:","Name of first teacher: ", "Childhood nickname: ","City or town of first job: "));
     }  
     
@@ -78,13 +69,13 @@ public class ForgotPasswordScreenController implements Initializable, Transition
     }
     
     
-    private void goToMainScreen()
+    private void goToLoginScreen()
     {
-        myController.setScreen(ScreensFramework.mainScreenID);
+        myController.setScreen(ScreensFramework.loginScreenID);
     }
     
     @FXML
-    private void saveButtonPressed(ActionEvent event)
+    private void submitButtonPressed(ActionEvent event)
     {
         //numberOfSteps = NumberOfStepsField.getText();
         //stepsDate     = StepsDateEntryField.getText();
@@ -121,7 +112,7 @@ public class ForgotPasswordScreenController implements Initializable, Transition
                                                                                 LoginScreenController.userName + "' AND date = '" + stepsDate + "'"; 
                     Statement updateStatement = connection.createStatement();
                     updateStatement.executeUpdate(stepsUpdate);
-                    goToMainScreen();
+                    goToLoginScreen();
                     connection.close();
                 }
                 // If there is not an entry already in the database for the specified date, the INSERT statement is used to create a new entry in the database.
@@ -133,7 +124,7 @@ public class ForgotPasswordScreenController implements Initializable, Transition
                     // Executes the statement and writes to the datebase.
                     insertStatement.executeUpdate(stepsInsert);
                     // Returns to the main screen 
-                    goToMainScreen();
+                    goToLoginScreen();
                     // Closes the connection to the database.
                     connection.close();
                 }
@@ -150,12 +141,13 @@ public class ForgotPasswordScreenController implements Initializable, Transition
             return;
 	}
         // Refreshes all of the scenes so that newly entered data will be reflected  
-        ScreensFramework.GlobalRefresh();
+        //ScreensFramework.GlobalRefresh();
     }
     
     @FXML
     private void cancelButtonPressed(ActionEvent event)
     {
-        goToMainScreen();
+        ScreensFramework.GlobalRefresh();
+        goToLoginScreen();
     }
 }

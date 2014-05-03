@@ -6,3 +6,20 @@
 .default-color0.chart-series-line { -fx-stroke: #0070c0; }
 /*.default-color0.chart-line-symbol { -fx-background-color: #0070c0, #0070c0; }*/
 .default-color0.chart-line-symbol { -fx-background-color: #0070c0, #FFFFFF; }
+
+.chart-bar
+{
+    -fx-bar-fill: #0070c0; 
+    -fx-effect: null; 
+    -fx-background-color: #0070c0;
+    -fx-font-color: #0070c0;
+}
+.axis-label 
+{
+   -fx-text-fill: #0070c0; 
+}
+.chart-legend-item
+{
+    -fx-text-fill: #0070c0; 
+}
+.default-color0.chart-bar { -fx-bar-fill: #0070c0; -fx-effect: null; }

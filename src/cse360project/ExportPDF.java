@@ -40,7 +40,8 @@ import javafx.scene.chart.CategoryAxis;
 
 public class ExportPDF 
 {
-    private static String FILE    = "c:/temp/THOReport.pdf";
+    //private static String FILE    = "c:/temp/THOReport.pdf";
+    private static String ALTFILE = "THOReport.pdf";
     private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 36, Font.BOLD);
     private static Font redFont   = new Font(Font.FontFamily.HELVETICA, 16, Font.NORMAL);
     private static Font subFont   = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
@@ -87,16 +88,23 @@ public class ExportPDF
   {
     try 
     {
-        Document document = new Document(PageSize.A3.rotate(), 10, 10, 10, 10);
+        /*Document document = new Document(PageSize.A3.rotate(), 10, 10, 10, 10);
         PdfWriter.getInstance(document, new FileOutputStream(FILE));
         document.open();
         addMetaData(document);
         addTitlePage(document);
         addImages(document);
-        document.close();
+        document.close();*/
         
-        //writeChartToPDF(generateBarChart(), 500, 400);
-        //document.close();
+        
+        
+        Document documentAlt = new Document(PageSize.A3.rotate(), 10, 10, 10, 10);
+        PdfWriter.getInstance(documentAlt, new FileOutputStream(ALTFILE));
+        documentAlt.open();
+        addMetaData(documentAlt);
+        addTitlePage(documentAlt);
+        addImages(documentAlt);
+        documentAlt.close();
         
         if (Desktop.isDesktopSupported()) {
         try 
@@ -108,6 +116,10 @@ public class ExportPDF
         {
             System.out.println("Failed to open file!");
         }
+        //writeChartToPDF(generateBarChart(), 500, 400);
+        //document.close();
+        
+        
 }
     } 
     catch (Exception e) 
@@ -1602,7 +1614,6 @@ public class ExportPDF
                         {
                            dateList.add(dataResult.getString(3));
                            pressureList.add(dataResult.getString(11));
-                           System.out.println("LAME");
                         }        
                     }   
                 }
