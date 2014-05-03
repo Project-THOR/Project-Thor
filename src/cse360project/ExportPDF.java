@@ -109,7 +109,7 @@ public class ExportPDF
         if (Desktop.isDesktopSupported()) {
         try 
         {
-            File myFile = new File("c:/temp/THOReport.pdf");
+            File myFile = new File("THOReport.pdf");
             Desktop.getDesktop().open(myFile);
         } 
         catch (IOException ex) 
